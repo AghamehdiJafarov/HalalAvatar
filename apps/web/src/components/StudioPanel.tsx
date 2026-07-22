@@ -5,7 +5,6 @@ import { loadClientAssets, type ClientAssets } from "@/lib/avatar-client";
 import { PartThumb } from "./PartThumb";
 import { PaletteSwatch } from "./PaletteSwatch";
 
-// Editable slots exposed in studio (spec 18 tabs).
 const SLOTS: { slot: string; label: string; optional: boolean }[] = [
   { slot: "hair", label: "Причёска", optional: true },
   { slot: "headwear", label: "Головной убор", optional: true },
@@ -22,9 +21,11 @@ export function StudioPanel({ config, onChange, onSave }: {
   onSave: (c: AvatarConfig) => void;
 }) {
   const [assets, setAssets] = useState<ClientAssets | null>(null);
-  useEffect(() => { loadClientAssets().then(setAssets); }, []);
+  const [loadError, setLoadError] = useState(false);
+  useEffect(() => { loadClientAssets().then(setAssets).catch(() => setLoadError(true)); }, []);
 
   const resolved = useMemo(() => assets ? resolveConfig(assets.manifest, config) : null, [assets, config]);
+  if (loadError) return <div className="p-4 text-red-500">Не удалось загрузить ассеты аватара.</div>;
   if (!assets || !resolved) return <div className="p-4 text-neutral-500">Загрузка…</div>;
 
   const paletteMap = assets.palettes[resolved.palette]!;
@@ -32,7 +33,6 @@ export function StudioPanel({ config, onChange, onSave }: {
 
   const setPart = (slot: string, id: string | null) => {
     const next: AvatarConfig = { ...config, parts: { ...config.parts, [slot]: id } };
-    // client-side rule mirror: headwear nulls hair (spec pitfall 14)
     if (slot === "headwear" && id) next.parts.hair = null;
     onChange(next);
   };

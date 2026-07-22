@@ -1,0 +1,14 @@
+{
+  "ref_blue":  { "--c-wall": "#2E7FC1", "--c-wall2": "#2A76B5", "--c-desk": "#E8A33D",
+                 "--c-skin": "#F2C9A0", "--c-hair": "#4A3B32", "--c-headwear": "#7A5EA8",
+                 "--c-shirt": "#7FD4B0", "--c-shirt2": "#5FB894", "--c-dark": "#16455F",
+                 "--c-white": "#F4F7F9", "--c-accent": "#E05B4B" },
+  "sand":      { "--c-wall": "#E9D8B6", "--c-wall2": "#E0CBA1", "--c-desk": "#B9793B",
+                 "--c-skin": "#E8B98C", "--c-hair": "#2E2A26", "--c-headwear": "#3E6B5B",
+                 "--c-shirt": "#3E6B5B", "--c-shirt2": "#2F5647", "--c-dark": "#33302B",
+                 "--c-white": "#FBF7EF", "--c-accent": "#C1442E" },
+  "night":     { "--c-wall": "#1F2A3A", "--c-wall2": "#26344A", "--c-desk": "#C98A3F",
+                 "--c-skin": "#E9C39B", "--c-hair": "#101418", "--c-headwear": "#B9793B",
+                 "--c-shirt": "#4E8FD0", "--c-shirt2": "#3C74AC", "--c-dark": "#0E1620",
+                 "--c-white": "#EAF0F6", "--c-accent": "#E0B14B" }
+}

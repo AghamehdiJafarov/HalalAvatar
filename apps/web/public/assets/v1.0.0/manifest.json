@@ -1,0 +1,242 @@
+{
+  "version": "1.0.0",
+  "archetypes": [
+    {
+      "id": "seated_desk",
+      "zorder": [
+        "bg_wall",
+        "bg_decor_l",
+        "bg_decor_r",
+        "desk",
+        "prop_desk_a",
+        "prop_desk_b",
+        "torso",
+        "head",
+        "hair",
+        "headwear",
+        "glasses",
+        "arm_upper_L",
+        "forearm_L",
+        "hand_L",
+        "arm_upper_R",
+        "forearm_R",
+        "hand_R",
+        "prop_hand"
+      ],
+      "defaults": {
+        "bg_wall": "p_bg_wall_flat",
+        "bg_decor_l": "p_bg_decor_l_shelf",
+        "bg_decor_r": "p_bg_decor_r_clock",
+        "desk": "p_desk_basic",
+        "prop_desk_a": "p_prop_desk_a_laptop",
+        "prop_desk_b": "p_prop_desk_b_cup",
+        "torso": "p_torso_tshirt_a",
+        "head": "p_head_blank",
+        "hair": "p_hair_short_a",
+        "headwear": null,
+        "glasses": "p_glasses_round",
+        "arm_upper_L": "p_arm_upper_L_tshirt",
+        "forearm_L": "p_forearm_L_skin",
+        "hand_L": "p_hand_L_a",
+        "arm_upper_R": "p_arm_upper_R_tshirt",
+        "forearm_R": "p_forearm_R_skin",
+        "hand_R": "p_hand_R_a",
+        "prop_hand": "p_prop_hand_phone"
+      },
+      "rules": [
+        {
+          "if": {
+            "slot": "headwear",
+            "not": null
+          },
+          "then": {
+            "set": {
+              "hair": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "id": "p_bg_wall_flat",
+      "slot": "bg_wall",
+      "file": "parts/bg_wall/flat.svg",
+      "tags": [
+        "neutral"
+      ],
+      "bytes": 691
+    },
+    {
+      "id": "p_bg_decor_l_shelf",
+      "slot": "bg_decor_l",
+      "file": "parts/bg_decor_l/shelf.svg",
+      "tags": [
+        "shelf"
+      ],
+      "bytes": 1013
+    },
+    {
+      "id": "p_bg_decor_r_clock",
+      "slot": "bg_decor_r",
+      "file": "parts/bg_decor_r/clock.svg",
+      "tags": [
+        "clock"
+      ],
+      "bytes": 702
+    },
+    {
+      "id": "p_desk_basic",
+      "slot": "desk",
+      "file": "parts/desk/basic.svg",
+      "tags": [
+        "neutral"
+      ],
+      "bytes": 140
+    },
+    {
+      "id": "p_prop_desk_a_laptop",
+      "slot": "prop_desk_a",
+      "file": "parts/prop_desk_a/laptop.svg",
+      "tags": [
+        "laptop"
+      ],
+      "bytes": 282
+    },
+    {
+      "id": "p_prop_desk_b_cup",
+      "slot": "prop_desk_b",
+      "file": "parts/prop_desk_b/cup.svg",
+      "tags": [
+        "cup"
+      ],
+      "bytes": 286
+    },
+    {
+      "id": "p_torso_tshirt_a",
+      "slot": "torso",
+      "file": "parts/torso/tshirt_a.svg",
+      "tags": [
+        "tshirt"
+      ],
+      "bytes": 291
+    },
+    {
+      "id": "p_head_blank",
+      "slot": "head",
+      "file": "parts/head/blank.svg",
+      "tags": [
+        "neutral"
+      ],
+      "bytes": 196
+    },
+    {
+      "id": "p_hair_short_a",
+      "slot": "hair",
+      "file": "parts/hair/short_a.svg",
+      "tags": [
+        "short"
+      ],
+      "bytes": 217
+    },
+    {
+      "id": "p_headwear_hijab_a",
+      "slot": "headwear",
+      "file": "parts/headwear/hijab_a.svg",
+      "tags": [
+        "hijab"
+      ],
+      "bytes": 285
+    },
+    {
+      "id": "p_glasses_round",
+      "slot": "glasses",
+      "file": "parts/glasses/round.svg",
+      "tags": [
+        "round"
+      ],
+      "bytes": 568
+    },
+    {
+      "id": "p_arm_upper_L_tshirt",
+      "slot": "arm_upper_L",
+      "file": "parts/arm_upper_L/tshirt.svg",
+      "tags": [
+        "tshirt"
+      ],
+      "bytes": 291
+    },
+    {
+      "id": "p_arm_upper_R_tshirt",
+      "slot": "arm_upper_R",
+      "file": "parts/arm_upper_R/tshirt.svg",
+      "tags": [
+        "tshirt"
+      ],
+      "bytes": 291
+    },
+    {
+      "id": "p_forearm_L_skin",
+      "slot": "forearm_L",
+      "file": "parts/forearm_L/skin.svg",
+      "tags": [
+        "skin"
+      ],
+      "bytes": 174
+    },
+    {
+      "id": "p_forearm_R_skin",
+      "slot": "forearm_R",
+      "file": "parts/forearm_R/skin.svg",
+      "tags": [
+        "skin"
+      ],
+      "bytes": 174
+    },
+    {
+      "id": "p_hand_L_a",
+      "slot": "hand_L",
+      "file": "parts/hand_L/a.svg",
+      "tags": [
+        "neutral"
+      ],
+      "bytes": 112
+    },
+    {
+      "id": "p_hand_R_a",
+      "slot": "hand_R",
+      "file": "parts/hand_R/a.svg",
+      "tags": [
+        "neutral"
+      ],
+      "bytes": 112
+    },
+    {
+      "id": "p_prop_hand_phone",
+      "slot": "prop_hand",
+      "file": "parts/prop_hand/phone.svg",
+      "tags": [
+        "phone"
+      ],
+      "bytes": 254
+    }
+  ],
+  "palettes": [
+    "ref_blue",
+    "sand",
+    "night"
+  ],
+  "clips": [
+    "idle_breathe",
+    "idle_sway",
+    "nod",
+    "tilt_L",
+    "tilt_R",
+    "beat_R",
+    "open_palm_L",
+    "point_R",
+    "lean_in",
+    "settle"
+  ]
+}
