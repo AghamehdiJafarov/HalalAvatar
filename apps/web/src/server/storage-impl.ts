@@ -39,3 +39,14 @@ export function s3Storage(opts: {
     publicUrl(key) { return `${publicBase}/${key}`; },
   };
 }
+
+export function memoryStorage(publicBase: string): Storage {
+  const mem = new Map<string, Uint8Array>();
+  return {
+    async head(key) { return mem.has(key); },
+    async put(key, body) { mem.set(key, body); },
+    async getText(key) { const v = mem.get(key); return v ? new TextDecoder().decode(v) : null; },
+    async getBytes() { },
+    publicUrl(key) { return `${publicBase}/dev-storage/${key}`; },
+  };
+}
