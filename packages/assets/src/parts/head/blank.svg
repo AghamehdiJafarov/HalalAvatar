@@ -1,0 +1,4 @@
+<symbol id="p_head_blank" viewBox="0 0 1600 900">
+  <rect x="776" y="352" width="48" height="76" rx="14" fill="var(--c-skin)"/>
+  <circle cx="800" cy="290" r="85" fill="var(--c-skin)"/>
+</symbol>

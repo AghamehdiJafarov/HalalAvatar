@@ -1,0 +1,7 @@
+<symbol id="p_glasses_round" viewBox="0 0 1600 900">
+  <circle cx="758" cy="300" r="30" fill="none" stroke="var(--c-dark)" stroke-width="7"/>
+  <circle cx="842" cy="300" r="30" fill="none" stroke="var(--c-dark)" stroke-width="7"/>
+  <line x1="788" y1="298" x2="812" y2="298" stroke="var(--c-dark)" stroke-width="7" stroke-linecap="round"/>
+  <line x1="728" y1="296" x2="716" y2="290" stroke="var(--c-dark)" stroke-width="7" stroke-linecap="round"/>
+  <line x1="872" y1="296" x2="884" y2="290" stroke="var(--c-dark)" stroke-width="7" stroke-linecap="round"/>
+</symbol>

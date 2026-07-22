@@ -1,0 +1,60 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  avatar    AvatarProfile?
+  conversations Conversation[]
+  videoJobs VideoJob[]
+}
+
+model AvatarProfile {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  config    Json
+  updatedAt DateTime @updatedAt
+}
+
+model Conversation {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  title     String    @default("New chat")
+  createdAt DateTime  @default(now())
+  messages  Message[]
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  role           String
+  text           String
+  lang           String?
+  audioKey       String?
+  durationMs     Int?
+  timeline       Json?
+  createdAt      DateTime @default(now())
+  videoJobs      VideoJob[]
+  @@index([conversationId, createdAt])
+}
+
+model VideoJob {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  messageId  String
+  message    Message  @relation(fields: [messageId], references: [id])
+  status     String   @default("queued")
+  resultKey  String?
+  error      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@index([userId, createdAt])
+}

@@ -1,0 +1,5 @@
+{$APP_DOMAIN:localhost} {
+	reverse_proxy web:3000
+	encode gzip
+	header /assets/* Cache-Control "public, max-age=31536000, immutable"
+}

@@ -1,0 +1,8 @@
+node_modules
+dist
+.next
+.env
+apps/web/public/dev-storage
+apps/web/public/assets
+/tmp
+*.log

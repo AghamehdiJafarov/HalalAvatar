@@ -1,0 +1,5 @@
+<symbol id="p_prop_desk_a_laptop" viewBox="0 0 1600 900">
+  <path d="M 352 640 L 388 468 L 566 468 L 548 640 Z" fill="var(--c-dark)"/>
+  <circle cx="462" cy="552" r="15" fill="var(--c-white)"/>
+  <rect x="330" y="628" width="240" height="14" rx="7" fill="var(--c-dark)"/>
+</symbol>

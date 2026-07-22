@@ -1,0 +1,4 @@
+<symbol id="p_prop_desk_b_cup" viewBox="0 0 1600 900">
+  <path d="M 1152 584 L 1204 584 L 1197 640 L 1159 640 Z" fill="var(--c-dark)"/>
+  <path d="M 1204 594 Q 1232 598 1228 616 Q 1224 630 1200 628" fill="none" stroke="var(--c-dark)" stroke-width="9" stroke-linecap="round"/>
+</symbol>

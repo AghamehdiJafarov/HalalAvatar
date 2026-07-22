@@ -1,0 +1,4 @@
+<symbol id="p_torso_tshirt_a" viewBox="0 0 1600 900">
+  <path d="M 662 640 L 662 522 Q 662 434 748 420 L 852 420 Q 938 434 938 522 L 938 640 Z" fill="var(--c-shirt)"/>
+  <path d="M 756 420 Q 800 452 844 420 L 852 420 Q 812 466 788 466 Q 764 466 748 420 Z" fill="var(--c-shirt2)"/>
+</symbol>

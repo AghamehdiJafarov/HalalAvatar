@@ -1,0 +1,6 @@
+{ "id": "idle_breathe", "durationMs": 3600, "loop": true, "tracks": [
+  { "target": "rt_torso", "prop": "ty", "keys": [ {"t":0,"v":0,"e":"io"}, {"t":1800,"v":-4,"e":"io"}, {"t":3600,"v":0} ] },
+  { "target": "rt_torso", "prop": "sy", "keys": [ {"t":0,"v":0,"e":"io"}, {"t":1800,"v":0.008,"e":"io"}, {"t":3600,"v":0} ] },
+  { "target": "rt_head",  "prop": "r",  "keys": [ {"t":0,"v":0,"e":"io"}, {"t":1800,"v":-1.2,"e":"io"}, {"t":3600,"v":0} ] },
+  { "target": "rt_arm_L", "prop": "r",  "keys": [ {"t":0,"v":0,"e":"io"}, {"t":1800,"v":0.8,"e":"io"}, {"t":3600,"v":0} ] },
+  { "target": "rt_arm_R", "prop": "r",  "keys": [ {"t":0,"v":0,"e":"io"}, {"t":1800,"v":-0.8,"e":"io"}, {"t":3600,"v":0} ] } ] }

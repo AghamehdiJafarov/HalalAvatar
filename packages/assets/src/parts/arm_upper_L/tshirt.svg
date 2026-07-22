@@ -1,0 +1,4 @@
+<symbol id="p_arm_upper_L_tshirt" viewBox="0 0 1600 900">
+  <line x1="695" y1="455" x2="635" y2="560" stroke="var(--c-shirt)" stroke-width="58" stroke-linecap="round"/>
+  <line x1="659" y1="518" x2="676" y2="528" stroke="var(--c-shirt2)" stroke-width="10" stroke-linecap="round"/>
+</symbol>

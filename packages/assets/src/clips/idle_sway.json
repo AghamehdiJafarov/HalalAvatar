@@ -1,0 +1,1 @@
+{"id": "idle_sway", "durationMs": 5200, "loop": true, "tracks": [{"target": "rt_torso", "prop": "r", "keys": [{"t": 0, "v": 0, "e": "io"}, {"t": 2600, "v": 0.6, "e": "io"}, {"t": 5200, "v": 0}]}, {"target": "rt_head", "prop": "r", "keys": [{"t": 0, "v": 0, "e": "io"}, {"t": 2600, "v": -0.8, "e": "io"}, {"t": 5200, "v": 0}]}]}

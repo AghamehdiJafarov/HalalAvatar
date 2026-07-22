@@ -1,0 +1,3 @@
+{ "id": "nod", "durationMs": 900, "loop": false, "fadeInMs": 120, "fadeOutMs": 180, "tracks": [
+  { "target": "rt_head", "prop": "r",  "keys": [ {"t":0,"v":0,"e":"out"}, {"t":220,"v":5,"e":"io"}, {"t":430,"v":-3.5,"e":"io"}, {"t":650,"v":2,"e":"io"}, {"t":900,"v":0} ] },
+  { "target": "rt_head", "prop": "ty", "keys": [ {"t":0,"v":0,"e":"out"}, {"t":220,"v":6,"e":"io"}, {"t":430,"v":-2,"e":"io"}, {"t":900,"v":0} ] } ] }

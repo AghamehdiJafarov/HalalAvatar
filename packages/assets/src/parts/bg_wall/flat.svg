@@ -1,0 +1,8 @@
+<symbol id="p_bg_wall_flat" viewBox="0 0 1600 900">
+  <rect x="0" y="0" width="1600" height="900" fill="var(--c-wall)"/>
+  <rect x="90" y="80" width="180" height="260" rx="24" fill="var(--c-wall2)" transform="rotate(8 180 210)"/>
+  <rect x="1330" y="120" width="200" height="300" rx="24" fill="var(--c-wall2)" transform="rotate(-7 1430 270)"/>
+  <rect x="620" y="-60" width="220" height="240" rx="24" fill="var(--c-wall2)" transform="rotate(12 730 60)"/>
+  <rect x="200" y="700" width="220" height="260" rx="24" fill="var(--c-wall2)" transform="rotate(-10 310 830)"/>
+  <rect x="1180" y="720" width="240" height="240" rx="24" fill="var(--c-wall2)" transform="rotate(9 1300 840)"/>
+</symbol>
