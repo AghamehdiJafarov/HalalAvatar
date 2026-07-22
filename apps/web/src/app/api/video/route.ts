@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/server/db";
 import { requireUserId } from "@/server/session";
-import { videoQueue } from "@/server/queue";
+import { getVideoQueue } from "@/server/queue";
 import { MAX_VIDEO_MS } from "@faceless/avatar-core";
 
 const Body = z.object({ messageId: z.string() });
@@ -17,7 +17,10 @@ export async function POST(req: Request) {
   if (!msg || msg.role !== "assistant") return NextResponse.json({ error: { code: "bad_request", message: "not an assistant message" } }, { status: 400 });
   if ((msg.durationMs ?? 0) > MAX_VIDEO_MS) return NextResponse.json({ error: { code: "too_long", message: "exceeds max video length" } }, { status: 400 });
 
+  const queue = getVideoQueue();
+  if (!queue) return NextResponse.json({ error: { code: "unavailable", message: "video rendering is not configured (no REDIS_URL)" } }, { status: 503 });
+
   const job = await prisma.videoJob.create({ data: { userId, messageId: msg.id, status: "queued" } });
-  await videoQueue.add("render", { jobId: job.id }, { jobId: job.id, removeOnComplete: true, removeOnFail: false });
+  await queue.add("render", { jobId: job.id }, { jobId: job.id, removeOnComplete: true, removeOnFail: false });
   return NextResponse.json({ jobId: job.id }, { status: 202 });
 }

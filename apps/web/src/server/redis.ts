@@ -1,11 +1,29 @@
 import IORedis from "ioredis";
-const g = globalThis as unknown as { redis?: IORedis };
-export const redis = g.redis ?? new IORedis(process.env.REDIS_URL ?? "redis://localhost:6379", { maxRetriesPerRequest: null });
-if (process.env.NODE_ENV !== "production") g.redis = redis;
 
-// Rate limit: N actions per window seconds (spec 13.1). Returns true if allowed.
+const g = globalThis as unknown as { redis?: IORedis | null };
+
+export function getRedis(): IORedis | null {
+  if (g.redis !== undefined) return g.redis;
+  const url = process.env.REDIS_URL;
+  if (!url) { g.redis = null; return null; }
+  const client = new IORedis(url, {
+    maxRetriesPerRequest: 2,
+    lazyConnect: true,
+    enableOfflineQueue: false,
+  });
+  client.on("error", () => {});
+  g.redis = client;
+  return client;
+}
+
 export async function rateLimit(key: string, limit: number, windowSec: number): Promise<boolean> {
-  const n = await redis.incr(key);
-  if (n === 1) await redis.expire(key, windowSec);
-  return n <= limit;
+  const redis = getRedis();
+  if (!redis) return true;
+  try {
+    const n = await redis.incr(key);
+    if (n === 1) await redis.expire(key, windowSec);
+    return n <= limit;
+  } catch {
+    return true;
+  }
 }
