@@ -14,7 +14,7 @@
   "dependencies": {
     "@faceless/avatar-core": "workspace:*",
     "@prisma/client": "5.22.0",
-    "next": "15.0.3",
+    "next": "15.0.7",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "zustand": "5.0.1",
