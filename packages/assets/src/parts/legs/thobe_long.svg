@@ -1,0 +1,4 @@
+<symbol id="p_legs_thobe_long" viewBox="0 0 1600 900">
+  <path d="M 704 470 Q 800 462 896 470 L 910 836 Q 800 852 690 836 Z" fill="var(--c-shirt)"/>
+  <path d="M 690 828 Q 800 844 910 828 L 910 836 Q 800 852 690 836 Z" fill="var(--c-shirt2)"/>
+</symbol>

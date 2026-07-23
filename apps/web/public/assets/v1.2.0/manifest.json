@@ -131,7 +131,8 @@
       "file": "parts/bg_wall/flat.svg",
       "tags": [
         "neutral"
-      ]
+      ],
+      "bytes": 691
     },
     {
       "id": "p_bg_decor_l_shelf",
@@ -139,7 +140,8 @@
       "file": "parts/bg_decor_l/shelf.svg",
       "tags": [
         "shelf"
-      ]
+      ],
+      "bytes": 1013
     },
     {
       "id": "p_bg_decor_r_clock",
@@ -147,7 +149,8 @@
       "file": "parts/bg_decor_r/clock.svg",
       "tags": [
         "clock"
-      ]
+      ],
+      "bytes": 702
     },
     {
       "id": "p_desk_basic",
@@ -155,7 +158,8 @@
       "file": "parts/desk/basic.svg",
       "tags": [
         "neutral"
-      ]
+      ],
+      "bytes": 140
     },
     {
       "id": "p_prop_desk_a_laptop",
@@ -163,7 +167,8 @@
       "file": "parts/prop_desk_a/laptop.svg",
       "tags": [
         "laptop"
-      ]
+      ],
+      "bytes": 282
     },
     {
       "id": "p_prop_desk_b_cup",
@@ -171,7 +176,8 @@
       "file": "parts/prop_desk_b/cup.svg",
       "tags": [
         "cup"
-      ]
+      ],
+      "bytes": 286
     },
     {
       "id": "p_torso_tshirt_a",
@@ -179,7 +185,8 @@
       "file": "parts/torso/tshirt_a.svg",
       "tags": [
         "tshirt"
-      ]
+      ],
+      "bytes": 291
     },
     {
       "id": "p_head_blank",
@@ -187,7 +194,8 @@
       "file": "parts/head/blank.svg",
       "tags": [
         "neutral"
-      ]
+      ],
+      "bytes": 196
     },
     {
       "id": "p_hair_short_a",
@@ -195,7 +203,8 @@
       "file": "parts/hair/short_a.svg",
       "tags": [
         "short"
-      ]
+      ],
+      "bytes": 217
     },
     {
       "id": "p_glasses_round",
@@ -203,7 +212,8 @@
       "file": "parts/glasses/round.svg",
       "tags": [
         "round"
-      ]
+      ],
+      "bytes": 568
     },
     {
       "id": "p_arm_upper_L_tshirt",
@@ -211,7 +221,8 @@
       "file": "parts/arm_upper_L/tshirt.svg",
       "tags": [
         "tshirt"
-      ]
+      ],
+      "bytes": 291
     },
     {
       "id": "p_arm_upper_R_tshirt",
@@ -219,7 +230,8 @@
       "file": "parts/arm_upper_R/tshirt.svg",
       "tags": [
         "tshirt"
-      ]
+      ],
+      "bytes": 291
     },
     {
       "id": "p_forearm_L_skin",
@@ -227,7 +239,8 @@
       "file": "parts/forearm_L/skin.svg",
       "tags": [
         "skin"
-      ]
+      ],
+      "bytes": 174
     },
     {
       "id": "p_forearm_R_skin",
@@ -235,7 +248,8 @@
       "file": "parts/forearm_R/skin.svg",
       "tags": [
         "skin"
-      ]
+      ],
+      "bytes": 174
     },
     {
       "id": "p_hand_L_a",
@@ -243,7 +257,8 @@
       "file": "parts/hand_L/a.svg",
       "tags": [
         "neutral"
-      ]
+      ],
+      "bytes": 112
     },
     {
       "id": "p_hand_R_a",
@@ -251,7 +266,8 @@
       "file": "parts/hand_R/a.svg",
       "tags": [
         "neutral"
-      ]
+      ],
+      "bytes": 112
     },
     {
       "id": "p_prop_hand_phone",
@@ -259,7 +275,8 @@
       "file": "parts/prop_hand/phone.svg",
       "tags": [
         "phone"
-      ]
+      ],
+      "bytes": 254
     },
     {
       "id": "p_headwear_kufi",
@@ -267,7 +284,8 @@
       "file": "parts/headwear/kufi.svg",
       "tags": [
         "kufi"
-      ]
+      ],
+      "bytes": 261
     },
     {
       "id": "p_hair_short_b",
@@ -275,7 +293,8 @@
       "file": "parts/hair/short_b.svg",
       "tags": [
         "short"
-      ]
+      ],
+      "bytes": 217
     },
     {
       "id": "p_hair_side_part",
@@ -283,7 +302,8 @@
       "file": "parts/hair/side_part.svg",
       "tags": [
         "side-part"
-      ]
+      ],
+      "bytes": 237
     },
     {
       "id": "p_torso_shirt_collar",
@@ -291,7 +311,8 @@
       "file": "parts/torso/shirt_collar.svg",
       "tags": [
         "shirt"
-      ]
+      ],
+      "bytes": 354
     },
     {
       "id": "p_torso_thobe",
@@ -299,7 +320,8 @@
       "file": "parts/torso/thobe.svg",
       "tags": [
         "thobe"
-      ]
+      ],
+      "bytes": 425
     },
     {
       "id": "p_torso_vest",
@@ -307,7 +329,8 @@
       "file": "parts/torso/vest.svg",
       "tags": [
         "vest"
-      ]
+      ],
+      "bytes": 433
     },
     {
       "id": "p_prop_desk_a_book",
@@ -315,7 +338,8 @@
       "file": "parts/prop_desk_a/book.svg",
       "tags": [
         "book"
-      ]
+      ],
+      "bytes": 295
     },
     {
       "id": "p_prop_desk_b_tasbih",
@@ -323,7 +347,8 @@
       "file": "parts/prop_desk_b/tasbih.svg",
       "tags": [
         "tasbih"
-      ]
+      ],
+      "bytes": 841
     },
     {
       "id": "p_legs_pants",
@@ -331,7 +356,8 @@
       "file": "parts/legs/pants.svg",
       "tags": [
         "pants"
-      ]
+      ],
+      "bytes": 314
     },
     {
       "id": "p_legs_thobe_long",
@@ -339,7 +365,8 @@
       "file": "parts/legs/thobe_long.svg",
       "tags": [
         "thobe"
-      ]
+      ],
+      "bytes": 254
     },
     {
       "id": "p_shoes_basic",
@@ -347,7 +374,8 @@
       "file": "parts/shoes/basic.svg",
       "tags": [
         "shoes"
-      ]
+      ],
+      "bytes": 309
     },
     {
       "id": "p_torso_suit_tie",
@@ -355,7 +383,8 @@
       "file": "parts/torso/suit_tie.svg",
       "tags": [
         "suit"
-      ]
+      ],
+      "bytes": 470
     },
     {
       "id": "p_torso_coat_medic",
@@ -363,7 +392,8 @@
       "file": "parts/torso/coat_medic.svg",
       "tags": [
         "medic"
-      ]
+      ],
+      "bytes": 568
     },
     {
       "id": "p_torso_apron",
@@ -371,7 +401,8 @@
       "file": "parts/torso/apron.svg",
       "tags": [
         "chef"
-      ]
+      ],
+      "bytes": 410
     },
     {
       "id": "p_torso_hoodie",
@@ -379,7 +410,8 @@
       "file": "parts/torso/hoodie.svg",
       "tags": [
         "hoodie"
-      ]
+      ],
+      "bytes": 568
     },
     {
       "id": "p_headwear_hardhat",
@@ -387,7 +419,8 @@
       "file": "parts/headwear/hardhat.svg",
       "tags": [
         "builder"
-      ]
+      ],
+      "bytes": 342
     },
     {
       "id": "p_headwear_chef_hat",
@@ -395,7 +428,8 @@
       "file": "parts/headwear/chef_hat.svg",
       "tags": [
         "chef"
-      ]
+      ],
+      "bytes": 376
     },
     {
       "id": "p_prop_hand_pointer",
@@ -403,7 +437,8 @@
       "file": "parts/prop_hand/pointer.svg",
       "tags": [
         "pointer"
-      ]
+      ],
+      "bytes": 235
     }
   ],
   "palettes": [

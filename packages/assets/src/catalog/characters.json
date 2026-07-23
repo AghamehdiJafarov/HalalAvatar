@@ -138,6 +138,112 @@
      "glasses": null
     }
    }
+  },
+  {
+   "id": "ali",
+   "title": "Али — учитель",
+   "tags": [
+    "полный рост",
+    "указка"
+   ],
+   "config": {
+    "archetype": "standing",
+    "palette": "ivory",
+    "parts": {
+     "torso": "p_torso_shirt_collar",
+     "hair": "p_hair_side_part",
+     "prop_hand": "p_prop_hand_pointer"
+    }
+   }
+  },
+  {
+   "id": "farid",
+   "title": "Фарид — врач",
+   "tags": [
+    "полный рост",
+    "халат"
+   ],
+   "config": {
+    "archetype": "standing",
+    "palette": "night",
+    "parts": {
+     "torso": "p_torso_coat_medic",
+     "hair": "p_hair_short_b",
+     "glasses": null,
+     "prop_hand": null
+    }
+   }
+  },
+  {
+   "id": "nizami",
+   "title": "Низами — строитель",
+   "tags": [
+    "полный рост",
+    "каска"
+   ],
+   "config": {
+    "archetype": "standing",
+    "palette": "sand",
+    "parts": {
+     "torso": "p_torso_vest",
+     "headwear": "p_headwear_hardhat",
+     "glasses": null,
+     "prop_hand": null
+    }
+   }
+  },
+  {
+   "id": "anar",
+   "title": "Анар — бизнесмен",
+   "tags": [
+    "полный рост",
+    "костюм"
+   ],
+   "config": {
+    "archetype": "standing",
+    "palette": "midnight",
+    "parts": {
+     "torso": "p_torso_suit_tie",
+     "prop_hand": null
+    }
+   }
+  },
+  {
+   "id": "emin",
+   "title": "Эмин — повар",
+   "tags": [
+    "полный рост",
+    "колпак"
+   ],
+   "config": {
+    "archetype": "standing",
+    "palette": "ref_blue",
+    "parts": {
+     "torso": "p_torso_apron",
+     "headwear": "p_headwear_chef_hat",
+     "glasses": null,
+     "prop_hand": null
+    }
+   }
+  },
+  {
+   "id": "sheikh",
+   "title": "Шейх — наставник",
+   "tags": [
+    "полный рост",
+    "тоб"
+   ],
+   "config": {
+    "archetype": "standing",
+    "palette": "emerald",
+    "parts": {
+     "torso": "p_torso_thobe",
+     "headwear": "p_headwear_kufi",
+     "legs": "p_legs_thobe_long",
+     "glasses": null,
+     "prop_hand": null
+    }
+   }
   }
  ]
 }

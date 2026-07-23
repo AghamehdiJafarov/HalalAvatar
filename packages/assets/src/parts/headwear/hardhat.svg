@@ -1,0 +1,5 @@
+<symbol id="p_headwear_hardhat" viewBox="0 0 1600 900">
+  <path d="M 714 258 Q 718 176 800 170 Q 882 176 886 258 Q 800 232 714 258 Z" fill="var(--c-accent)"/>
+  <path d="M 698 262 Q 800 232 902 262 L 902 278 Q 800 250 698 278 Z" fill="var(--c-accent)"/>
+  <rect x="790" y="176" width="20" height="78" rx="10" fill="var(--c-dark)"/>
+</symbol>

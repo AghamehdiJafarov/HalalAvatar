@@ -1,0 +1,8 @@
+<symbol id="p_torso_coat_medic" viewBox="0 0 1600 900">
+  <path d="M 662 640 L 662 522 Q 662 434 748 420 L 852 420 Q 938 434 938 522 L 938 640 Z" fill="var(--c-white)"/>
+  <rect x="778" y="420" width="44" height="220" fill="var(--c-shirt)"/>
+  <path d="M 778 420 L 778 640 L 762 640 L 770 470 Z" fill="var(--c-shirt2)"/>
+  <path d="M 822 420 L 822 640 L 838 640 L 830 470 Z" fill="var(--c-shirt2)"/>
+  <rect x="690" y="560" width="44" height="52" rx="6" fill="var(--c-shirt2)"/>
+  <rect x="866" y="560" width="44" height="52" rx="6" fill="var(--c-shirt2)"/>
+</symbol>

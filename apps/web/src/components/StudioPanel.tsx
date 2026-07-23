@@ -6,15 +6,23 @@ import { PartThumb } from "./PartThumb";
 import { PaletteSwatch } from "./PaletteSwatch";
 
 // Editable slots exposed in studio (spec 18 tabs).
-const SLOTS: { slot: string; label: string; optional: boolean }[] = [
+interface SlotDef { slot: string; label: string; optional: boolean; archetypes?: string[] }
+const SLOTS: SlotDef[] = [
   { slot: "hair", label: "Причёска", optional: true },
   { slot: "headwear", label: "Головной убор", optional: true },
   { slot: "glasses", label: "Очки", optional: true },
   { slot: "torso", label: "Одежда", optional: false },
+  { slot: "legs", label: "Ноги", optional: false, archetypes: ["standing"] },
+  { slot: "shoes", label: "Обувь", optional: true, archetypes: ["standing"] },
   { slot: "prop_hand", label: "Предмет в руке", optional: true },
-  { slot: "prop_desk_a", label: "На столе слева", optional: true },
-  { slot: "prop_desk_b", label: "На столе справа", optional: true },
+  { slot: "prop_desk_a", label: "На столе слева", optional: true, archetypes: ["seated_desk"] },
+  { slot: "prop_desk_b", label: "На столе справа", optional: true, archetypes: ["seated_desk"] },
   { slot: "bg_wall", label: "Фон превью", optional: true },
+];
+
+const ARCHETYPES = [
+  { id: "seated_desk", title: "За столом" },
+  { id: "standing", title: "В полный рост" },
 ];
 
 export function StudioPanel({ config, onChange, onSave, animPreset, onAnimChange }: {
@@ -46,9 +54,28 @@ export function StudioPanel({ config, onChange, onSave, animPreset, onAnimChange
   return (
     <div className="flex flex-col gap-6">
       <section>
+        <h3 className="mb-2 text-sm font-semibold text-neutral-500">Поза</h3>
+        <div className="flex flex-wrap gap-2">
+          {ARCHETYPES.map((a) => (
+            <button
+              key={a.id}
+              onClick={() => onChange({ ...config, archetype: a.id })}
+              className={`rounded-full border px-3 py-1 text-sm ${
+                config.archetype === a.id
+                  ? "border-neutral-900 bg-neutral-900 text-white"
+                  : "border-neutral-300 text-neutral-700 hover:border-neutral-500"
+              }`}
+            >{a.title}</button>
+          ))}
+        </div>
+      </section>
+
+      <section>
         <h3 className="mb-2 text-sm font-semibold text-neutral-500">Анимация</h3>
         <div className="flex flex-wrap gap-2">
-          {assets.animations.presets.map((p) => (
+          {assets.animations.presets
+            .filter((p) => !p.archetypes || p.archetypes.includes(config.archetype))
+            .map((p) => (
             <button
               key={p.id}
               onClick={() => onAnimChange(p.id)}
@@ -72,7 +99,7 @@ export function StudioPanel({ config, onChange, onSave, animPreset, onAnimChange
           ))}
         </div>
       </section>
-      {SLOTS.map(({ slot, label, optional }) => (
+      {SLOTS.filter((d) => !d.archetypes || d.archetypes.includes(config.archetype)).map(({ slot, label, optional }) => (
         <section key={slot}>
           <h3 className="mb-2 text-sm font-semibold text-neutral-500">{label}</h3>
           <div className="flex flex-wrap gap-2">

@@ -108,6 +108,9 @@ for (const p of anims.presets) {
   }
   if (typeof p.posterMs !== "number" || p.posterMs < 0 || p.posterMs > anims.loopDurationMs)
     errors.push(`preset ${p.id}: bad posterMs`);
+  for (const aid of p.archetypes ?? [])
+    if (!manifest.archetypes.some((x: any) => x.id === aid))
+      errors.push(`preset ${p.id}: unknown archetype ${aid}`);
 }
 
 const slotOf = new Map<string, string>(manifest.parts.map((p: any) => [p.id, p.slot]));

@@ -20,7 +20,8 @@ export function DownloadPanel({ config, instances, durationMs, presetId }: {
   durationMs: number;
   presetId: string;
 }) {
-  const [framing, setFraming] = useState<BrowserFraming>("overlay");
+  const defaultFraming: BrowserFraming = config.archetype === "standing" ? "fullbody" : "overlay";
+  const [framing, setFraming] = useState<BrowserFraming>(defaultFraming);
   const [format, setFormat] = useState<FormatId>("mp4_green");
   const [busy, setBusy] = useState(false);
   const [pct, setPct] = useState(0);
@@ -28,8 +29,9 @@ export function DownloadPanel({ config, instances, durationMs, presetId }: {
 
   const run = async () => {
     setBusy(true); setPct(0); setError(null);
+    const effFraming = BROWSER_FRAMINGS[framing].archetype === config.archetype ? framing : defaultFraming;
     const job = {
-      config, instances, durationMs, framing,
+      config, instances, durationMs, framing: effFraming,
       onProgress: (done: number, total: number) => setPct(Math.round((done / total) * 100)),
     };
     try {
@@ -41,7 +43,7 @@ export function DownloadPanel({ config, instances, durationMs, presetId }: {
       } else blob = await exportGreenWebmRealtime(job);
 
       const ext = FORMATS.find((f) => f.id === format)!.ext;
-      saveBlob(blob, `halalavatar_${presetId}_${framing}.${ext}`);
+      saveBlob(blob, `halalavatar_${presetId}_${effFraming}.${ext}`);
     } catch (e) {
       setError((e as Error).message || "Не удалось создать файл");
     } finally {
@@ -57,7 +59,9 @@ export function DownloadPanel({ config, instances, durationMs, presetId }: {
 
       <p className="mb-1 text-xs text-neutral-500">Кадр</p>
       <div className="mb-3 flex flex-wrap gap-2">
-        {(Object.keys(BROWSER_FRAMINGS) as BrowserFraming[]).map((k) => (
+        {(Object.keys(BROWSER_FRAMINGS) as BrowserFraming[])
+          .filter((k) => BROWSER_FRAMINGS[k].archetype === config.archetype)
+          .map((k) => (
           <button
             key={k}
             onClick={() => setFraming(k)}

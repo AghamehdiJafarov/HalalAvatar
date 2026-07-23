@@ -1,0 +1,5 @@
+<symbol id="p_headwear_chef_hat" viewBox="0 0 1600 900">
+  <path d="M 714 240 Q 700 152 772 150 Q 800 118 828 150 Q 900 152 886 240 Q 800 216 714 240 Z" fill="var(--c-white)"/>
+  <path d="M 716 240 Q 800 216 884 240 L 884 268 Q 800 246 716 268 Z" fill="var(--c-white)"/>
+  <path d="M 716 260 Q 800 238 884 260 L 884 268 Q 800 246 716 268 Z" fill="var(--c-shirt2)"/>
+</symbol>

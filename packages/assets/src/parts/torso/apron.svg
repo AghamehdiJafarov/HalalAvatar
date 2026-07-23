@@ -1,0 +1,6 @@
+<symbol id="p_torso_apron" viewBox="0 0 1600 900">
+  <path d="M 662 640 L 662 522 Q 662 434 748 420 L 852 420 Q 938 434 938 522 L 938 640 Z" fill="var(--c-shirt)"/>
+  <path d="M 788 424 L 812 424 L 808 468 L 792 468 Z" fill="var(--c-accent)"/>
+  <path d="M 728 468 L 872 468 L 860 640 L 740 640 Z" fill="var(--c-accent)"/>
+  <rect x="770" y="540" width="60" height="44" rx="8" fill="var(--c-dark)"/>
+</symbol>

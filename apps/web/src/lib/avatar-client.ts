@@ -9,6 +9,7 @@ export interface AnimPreset {
   title: string;
   posterMs: number;
   instances: Instance[];
+  archetypes?: string[];
 }
 export interface AnimCatalog {
   loopDurationMs: number;

@@ -1,0 +1,4 @@
+<symbol id="p_prop_hand_pointer" viewBox="0 0 1600 900">
+  <line x1="862" y1="604" x2="948" y2="470" stroke="var(--c-dark)" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="948" cy="470" r="7" fill="var(--c-accent)"/>
+</symbol>

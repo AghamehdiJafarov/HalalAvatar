@@ -1,0 +1,7 @@
+<symbol id="p_torso_suit_tie" viewBox="0 0 1600 900">
+  <path d="M 662 640 L 662 522 Q 662 434 748 420 L 852 420 Q 938 434 938 522 L 938 640 Z" fill="var(--c-shirt2)"/>
+  <path d="M 766 420 L 800 508 L 834 420 Z" fill="var(--c-white)"/>
+  <path d="M 766 420 L 800 478 L 784 424 Z" fill="var(--c-dark)"/>
+  <path d="M 834 420 L 800 478 L 816 424 Z" fill="var(--c-dark)"/>
+  <path d="M 793 424 L 807 424 L 810 474 L 800 506 L 790 474 Z" fill="var(--c-accent)"/>
+</symbol>

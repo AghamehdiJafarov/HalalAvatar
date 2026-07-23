@@ -1,0 +1,4 @@
+<symbol id="p_shoes_basic" viewBox="0 0 1600 900">
+  <path d="M 716 830 L 788 830 L 788 858 L 706 858 Q 698 858 698 850 L 698 844 Q 698 834 710 831 Z" fill="var(--c-shoes)"/>
+  <path d="M 812 830 L 884 830 L 890 831 Q 902 834 902 844 L 902 850 Q 902 858 894 858 L 812 858 Z" fill="var(--c-shoes)"/>
+</symbol>

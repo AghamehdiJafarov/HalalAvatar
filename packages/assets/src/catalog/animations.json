@@ -258,6 +258,106 @@
      "startMs": 6300
     }
    ]
+  },
+  {
+   "id": "story_stand",
+   "title": "Рассказ (стоя)",
+   "posterMs": 1300,
+   "archetypes": [
+    "standing"
+   ],
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "weight_shift",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "explain_wide",
+     "startMs": 900
+    },
+    {
+     "clip": "point_up_R",
+     "startMs": 3300
+    },
+    {
+     "clip": "emphasize",
+     "startMs": 5500
+    }
+   ]
+  },
+  {
+   "id": "welcome_stand",
+   "title": "Приветствие (стоя)",
+   "posterMs": 1150,
+   "archetypes": [
+    "standing"
+   ],
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "weight_shift",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "palms_open_2",
+     "startMs": 700
+    },
+    {
+     "clip": "nod_double",
+     "startMs": 2900
+    },
+    {
+     "clip": "wave_R",
+     "startMs": 4700
+    }
+   ]
+  },
+  {
+   "id": "lecture",
+   "title": "Лекция",
+   "posterMs": 1250,
+   "archetypes": [
+    "standing"
+   ],
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "weight_shift",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "point_up_R",
+     "startMs": 800
+    },
+    {
+     "clip": "beat_R",
+     "startMs": 3100
+    },
+    {
+     "clip": "open_palm_L",
+     "startMs": 4300
+    },
+    {
+     "clip": "settle",
+     "startMs": 6300
+    }
+   ]
   }
  ]
 }

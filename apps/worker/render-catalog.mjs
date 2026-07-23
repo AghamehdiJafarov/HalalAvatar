@@ -49,12 +49,14 @@ for (const ch of charList) {
   const charDir = join(OUT, ch.id);
   mkdirSync(charDir, { recursive: true });
 
+  const isStanding = ch.config.archetype === "standing";
+  const charAnims = animList.filter((p) => !p.archetypes || p.archetypes.includes(ch.config.archetype));
   if (wantPosters) {
     const posterPath = join(charDir, "poster.png");
     if (force || !existsSync(posterPath)) {
-      const preset = animList[0] ?? anims.presets[0];
+      const preset = charAnims[0] ?? anims.presets[0];
       const svg = frameSVG(
-        { assets, config: ch.config, instances: preset.instances, framing: "overlay" },
+        { assets, config: ch.config, instances: preset.instances, framing: isStanding ? "stand_square" : "square" },
         preset.posterMs,
       );
       const wall = assets.palettes[ch.config.palette]["--c-wall"];
@@ -63,8 +65,9 @@ for (const ch of charList) {
     }
   }
 
-  for (const preset of animList) {
+  for (const preset of charAnims) {
     for (const framing of framings) {
+      if (FRAMINGS[framing].archetype !== ch.config.archetype) { continue; }
       for (const format of formats) {
         const file = `${preset.id}_${framing}.${FORMATS[format].ext}`;
         const outPath = join(charDir, file);

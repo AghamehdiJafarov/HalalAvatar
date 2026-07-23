@@ -85,8 +85,10 @@ export function composeSceneSVG(
   };
   const tf = (t: RigTarget) => transformFor(t, pose);
 
+  const layout = cfg.archetype.layout;
   const bg = BG_SLOTS.map(emit).join("");
   const deskzone = DESK_SLOTS.map(emit).join("");
+  const under = (layout?.underSlots ?? []).map(emit).join("");
   const head = HEAD_SLOTS.map(emit).join("");
 
   const armL =
@@ -104,8 +106,12 @@ export function composeSceneSVG(
     `</g>`;
 
   const headGroup = `<g id="rt_head" transform="${tf("rt_head")}">${head}</g>`;
-  const torso =
+  let torso =
     `<g id="rt_torso" transform="${tf("rt_torso")}">${emit("torso")}${headGroup}${armL}${armR}</g>`;
+  if (layout?.wrap) {
+    const { tx, ty, s } = layout.wrap;
+    torso = `<g id="rt_wrap" transform="translate(${tx} ${ty}) scale(${s})">${torso}</g>`;
+  }
 
   const stylePart = mode === "browser" ? styleBlock(paletteMap) : "";
 
@@ -114,6 +120,7 @@ export function composeSceneSVG(
     stylePart +
     `<g id="rt_bg">${bg}</g>` +
     `<g id="rt_deskzone">${deskzone}</g>` +
+    (under ? `<g id="rt_under">${under}</g>` : "") +
     torso +
     `</svg>`
   );

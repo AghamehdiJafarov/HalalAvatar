@@ -1,0 +1,7 @@
+<symbol id="p_torso_hoodie" viewBox="0 0 1600 900">
+  <path d="M 662 640 L 662 522 Q 662 434 748 420 L 852 420 Q 938 434 938 522 L 938 640 Z" fill="var(--c-shirt)"/>
+  <path d="M 740 420 Q 800 456 860 420 L 860 448 Q 800 486 740 448 Z" fill="var(--c-shirt2)"/>
+  <path d="M 758 566 L 842 566 L 832 634 L 768 634 Z" fill="var(--c-shirt2)"/>
+  <line x1="786" y1="452" x2="782" y2="510" stroke="var(--c-dark)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="814" y1="452" x2="818" y2="510" stroke="var(--c-dark)" stroke-width="5" stroke-linecap="round"/>
+</symbol>

@@ -17,10 +17,12 @@ export default function StudioPage() {
   }, [setConfig]);
 
   // Instances of the selected animation preset; falls back to plain idle.
-  const preset = useMemo(
-    () => assets?.animations.presets.find((p) => p.id === animPreset) ?? assets?.animations.presets[0],
-    [assets, animPreset],
-  );
+  const preset = useMemo(() => {
+    const ok = assets?.animations.presets.filter(
+      (p) => !p.archetypes || p.archetypes.includes(config.archetype),
+    );
+    return ok?.find((p) => p.id === animPreset) ?? ok?.[0];
+  }, [assets, animPreset, config.archetype]);
 
   const save = async (c: AvatarConfig) => {
     const res = await fetch("/api/avatar", {

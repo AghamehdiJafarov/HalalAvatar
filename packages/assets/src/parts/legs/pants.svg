@@ -1,0 +1,5 @@
+<symbol id="p_legs_pants" viewBox="0 0 1600 900">
+  <path d="M 706 470 Q 800 462 894 470 L 892 566 Q 800 580 708 566 Z" fill="var(--c-pants)"/>
+  <rect x="722" y="548" width="66" height="286" rx="30" fill="var(--c-pants)"/>
+  <rect x="812" y="548" width="66" height="286" rx="30" fill="var(--c-pants)"/>
+</symbol>

@@ -25,11 +25,20 @@ export interface ArchetypeRule {
   if: { slot: string; not?: null; eq?: string | null };
   then: { set: Record<string, string | null> };
 }
+export interface ArchetypeLayout {
+  /** Slots drawn in scene coordinates UNDER the character wrapper (e.g. legs, shoes). */
+  underSlots?: string[];
+  /** Uniform wrapper transform around the whole character stack. Lets a new
+   *  archetype reuse every part, pivot and clip of the seated rig at a
+   *  different scale/position (standing = seated upper body + legs below). */
+  wrap?: { tx: number; ty: number; s: number };
+}
 export interface Archetype {
   id: string;
   zorder: string[];
   defaults: Record<string, string | null>;
   rules: ArchetypeRule[];
+  layout?: ArchetypeLayout;
 }
 export interface PartEntry {
   id: string;

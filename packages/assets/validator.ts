@@ -14,7 +14,7 @@ export const ALLOWED_ATTRS = new Set([
 // ---- Color tokens (spec 4.3) ----
 export const COLOR_TOKENS = new Set([
   "--c-wall", "--c-wall2", "--c-desk", "--c-skin", "--c-hair", "--c-headwear",
-  "--c-shirt", "--c-shirt2", "--c-dark", "--c-white", "--c-accent",
+  "--c-shirt", "--c-shirt2", "--c-dark", "--c-white", "--c-accent", "--c-pants", "--c-shoes",
 ]);
 
 // ---- Face zone (spec 4.4 / rule): circle (800,295) r62 ----
