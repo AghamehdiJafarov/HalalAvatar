@@ -68,12 +68,21 @@ export function composeSceneSVG(
   _manifest: Manifest,
   cfg: ResolvedConfig,
   pose: Pose,
-  opts: { mode: "browser" | "flat"; paletteMap: Record<string, string>; symbols?: SymbolMap },
+  opts: {
+    mode: "browser" | "flat";
+    paletteMap: Record<string, string>;
+    symbols?: SymbolMap;
+    hideSlots?: string[];   // slots omitted entirely (e.g. background for alpha export)
+    viewBox?: string;       // crop region override, default full scene
+  },
 ): string {
-  const { mode, paletteMap, symbols } = opts;
-  const emit = (slot: string) =>
-    mode === "browser" ? useTag(cfg.parts[slot] ?? null)
-                        : inlineOrUse(cfg.parts[slot] ?? null, mode, symbols, paletteMap);
+  const { mode, paletteMap, symbols, viewBox } = opts;
+  const hidden = new Set(opts.hideSlots ?? []);
+  const emit = (slot: string) => {
+    if (hidden.has(slot)) return "";
+    return mode === "browser" ? useTag(cfg.parts[slot] ?? null)
+                              : inlineOrUse(cfg.parts[slot] ?? null, mode, symbols, paletteMap);
+  };
   const tf = (t: RigTarget) => transformFor(t, pose);
 
   const bg = BG_SLOTS.map(emit).join("");
@@ -101,7 +110,7 @@ export function composeSceneSVG(
   const stylePart = mode === "browser" ? styleBlock(paletteMap) : "";
 
   return (
-    `<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">` +
+    `<svg viewBox="${viewBox ?? "0 0 1600 900"}" xmlns="http://www.w3.org/2000/svg">` +
     stylePart +
     `<g id="rt_bg">${bg}</g>` +
     `<g id="rt_deskzone">${deskzone}</g>` +

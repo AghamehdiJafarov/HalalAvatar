@@ -30,8 +30,8 @@ describe("video render determinism (M6 golden)", () => {
   it("frame #150 (t=5000ms) PNG sha256 is stable across two renders", () => {
     const bg = assets.palettes.ref_blue!["--c-wall"]!;
     const svg = frameSVG(base, 150 * 1000 / 30); // frame 150 at 30fps = 5000ms
-    const h1 = createHash("sha256").update(renderFramePNG(svg, bg)).digest("hex");
-    const h2 = createHash("sha256").update(renderFramePNG(svg, bg)).digest("hex");
+    const h1 = createHash("sha256").update(renderFramePNG(svg, 1920, bg)).digest("hex");
+    const h2 = createHash("sha256").update(renderFramePNG(svg, 1920, bg)).digest("hex");
     expect(h1).toBe(h2);
   });
 
