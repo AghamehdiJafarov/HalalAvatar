@@ -16,10 +16,12 @@ export interface ChatMessage {
 
 interface AppState {
   config: AvatarConfig;
+  animPreset: string;
   conversationId: string | null;
   messages: ChatMessage[];
   playback: "idle" | "speaking";
   setConfig: (c: AvatarConfig) => void;
+  setAnimPreset: (id: string) => void;
   setConversationId: (id: string | null) => void;
   addMessage: (m: ChatMessage) => void;
   setMessages: (m: ChatMessage[]) => void;
@@ -28,10 +30,12 @@ interface AppState {
 
 export const useAppStore = create<AppState>((set) => ({
   config: DEFAULT_CONFIG,
+  animPreset: "idle_calm",
   conversationId: null,
   messages: [],
   playback: "idle",
   setConfig: (config) => set({ config }),
+  setAnimPreset: (animPreset) => set({ animPreset }),
   setConversationId: (conversationId) => set({ conversationId }),
   addMessage: (m) => set((s) => ({ messages: [...s.messages, m] })),
   setMessages: (messages) => set({ messages }),

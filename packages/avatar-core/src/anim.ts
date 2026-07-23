@@ -106,10 +106,12 @@ export class AvatarPlayer {
   private raf = 0;
   private t0 = 0;
   private groups: Partial<Record<RigTarget, SVGGElement>> = {};
+  private loopMs = 0;   // >0 wraps playback time, so catalog loops repeat forever
 
-  constructor(svgRoot: SVGSVGElement, clips: Record<string, Clip>) {
+  constructor(svgRoot: SVGSVGElement, clips: Record<string, Clip>, opts?: { loopMs?: number }) {
     this.svg = svgRoot;
     this.clips = clips;
+    this.loopMs = opts?.loopMs ?? 0;
     for (const target of RIG_TARGETS) {
       const el = svgRoot.querySelector<SVGGElement>(`#${target}`);
       if (el) this.groups[target] = el;
@@ -120,10 +122,13 @@ export class AvatarPlayer {
   attachAudio(el: HTMLAudioElement): void { this.audio = el; }
 
   private nowMs(): number {
-    if (this.audio && !this.audio.paused) return this.audio.currentTime * 1000;
-    if (this.audio && this.audio.currentTime > 0) return this.audio.currentTime * 1000;
-    return performance.now() - this.t0;
+    let t: number;
+    if (this.audio && (!this.audio.paused || this.audio.currentTime > 0)) t = this.audio.currentTime * 1000;
+    else t = performance.now() - this.t0;
+    return this.loopMs > 0 ? t % this.loopMs : t;
   }
+
+  setLoopMs(ms: number): void { this.loopMs = ms; }
 
   private apply(tMs: number): void {
     const pose = samplePose(this.instances, this.clips, tMs);

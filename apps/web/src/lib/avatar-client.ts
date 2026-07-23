@@ -1,13 +1,25 @@
 "use client";
 import {
   ASSETS_VERSION, resolveConfig, composeSceneSVG,
-  type AvatarConfig, type Clip, type Manifest,
+  type AvatarConfig, type Clip, type Instance, type Manifest,
 } from "@faceless/avatar-core";
+
+export interface AnimPreset {
+  id: string;
+  title: string;
+  posterMs: number;
+  instances: Instance[];
+}
+export interface AnimCatalog {
+  loopDurationMs: number;
+  presets: AnimPreset[];
+}
 
 export interface ClientAssets {
   manifest: Manifest;
   palettes: Record<string, Record<string, string>>;
   clips: Record<string, Clip>;
+  animations: AnimCatalog;
   spritesInjected: boolean;
 }
 
@@ -18,14 +30,15 @@ const base = `/assets/v${ASSETS_VERSION}`;
 
 export async function loadClientAssets(): Promise<ClientAssets> {
   if (cache) return cache;
-  const [manifest, palettes, clips, sprites] = await Promise.all([
+  const [manifest, palettes, clips, animations, sprites] = await Promise.all([
     fetch(`${base}/manifest.json`).then((r) => r.json()),
     fetch(`${base}/palettes.json`).then((r) => r.json()),
     fetch(`${base}/clips.json`).then((r) => r.json()),
+    fetch(`${base}/animations.json`).then((r) => r.json()),
     fetch(`${base}/sprites.svg`).then((r) => r.text()),
   ]);
   injectSprites(sprites);
-  cache = { manifest, palettes, clips, spritesInjected: true };
+  cache = { manifest, palettes, clips, animations, spritesInjected: true };
   return cache;
 }
 

@@ -5,6 +5,7 @@ import { loadClientAssets, type ClientAssets } from "@/lib/avatar-client";
 import { PartThumb } from "./PartThumb";
 import { PaletteSwatch } from "./PaletteSwatch";
 
+// Editable slots exposed in studio (spec 18 tabs).
 const SLOTS: { slot: string; label: string; optional: boolean }[] = [
   { slot: "hair", label: "Причёска", optional: true },
   { slot: "headwear", label: "Головной убор", optional: true },
@@ -15,13 +16,16 @@ const SLOTS: { slot: string; label: string; optional: boolean }[] = [
   { slot: "bg_wall", label: "Фон", optional: false },
 ];
 
-export function StudioPanel({ config, onChange, onSave }: {
+export function StudioPanel({ config, onChange, onSave, animPreset, onAnimChange }: {
   config: AvatarConfig;
   onChange: (c: AvatarConfig) => void;
   onSave: (c: AvatarConfig) => void;
+  animPreset: string;
+  onAnimChange: (id: string) => void;
 }) {
   const [assets, setAssets] = useState<ClientAssets | null>(null);
   const [loadError, setLoadError] = useState(false);
+  const [copied, setCopied] = useState(false);
   useEffect(() => { loadClientAssets().then(setAssets).catch(() => setLoadError(true)); }, []);
 
   const resolved = useMemo(() => assets ? resolveConfig(assets.manifest, config) : null, [assets, config]);
@@ -33,12 +37,30 @@ export function StudioPanel({ config, onChange, onSave }: {
 
   const setPart = (slot: string, id: string | null) => {
     const next: AvatarConfig = { ...config, parts: { ...config.parts, [slot]: id } };
+    // client-side rule mirror: headwear nulls hair (spec pitfall 14)
     if (slot === "headwear" && id) next.parts.hair = null;
     onChange(next);
   };
 
   return (
     <div className="flex flex-col gap-6">
+      <section>
+        <h3 className="mb-2 text-sm font-semibold text-neutral-500">Анимация</h3>
+        <div className="flex flex-wrap gap-2">
+          {assets.animations.presets.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => onAnimChange(p.id)}
+              className={`rounded-full border px-3 py-1 text-sm ${
+                animPreset === p.id
+                  ? "border-neutral-900 bg-neutral-900 text-white"
+                  : "border-neutral-300 text-neutral-700 hover:border-neutral-500"
+              }`}
+            >{p.title}</button>
+          ))}
+        </div>
+      </section>
+
       <section>
         <h3 className="mb-2 text-sm font-semibold text-neutral-500">Палитра</h3>
         <div className="flex flex-wrap gap-2">
@@ -64,7 +86,20 @@ export function StudioPanel({ config, onChange, onSave }: {
           </div>
         </section>
       ))}
-      <button onClick={() => onSave(config)} className="self-start rounded-lg bg-neutral-900 px-5 py-2 text-white">Сохранить</button>
+      <div className="flex flex-wrap gap-2">
+        <button onClick={() => onSave(config)} className="rounded-lg bg-neutral-900 px-5 py-2 text-white">Сохранить</button>
+        <button
+          onClick={() => {
+            const code = btoa(unescape(encodeURIComponent(JSON.stringify(config))));
+            navigator.clipboard?.writeText(code).then(
+              () => setCopied(true),
+              () => setCopied(false),
+            );
+            setTimeout(() => setCopied(false), 2000);
+          }}
+          className="rounded-lg border border-neutral-300 px-5 py-2 text-neutral-700 hover:border-neutral-500"
+        >{copied ? "Скопировано" : "Скопировать код аватара"}</button>
+      </div>
     </div>
   );
 }
