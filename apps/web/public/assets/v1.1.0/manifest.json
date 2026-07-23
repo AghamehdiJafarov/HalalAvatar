@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "archetypes": [
     {
       "id": "seated_desk",
@@ -141,15 +141,6 @@
       "bytes": 217
     },
     {
-      "id": "p_headwear_hijab_a",
-      "slot": "headwear",
-      "file": "parts/headwear/hijab_a.svg",
-      "tags": [
-        "hijab"
-      ],
-      "bytes": 285
-    },
-    {
       "id": "p_glasses_round",
       "slot": "glasses",
       "file": "parts/glasses/round.svg",
@@ -220,6 +211,78 @@
         "phone"
       ],
       "bytes": 254
+    },
+    {
+      "id": "p_headwear_kufi",
+      "slot": "headwear",
+      "file": "parts/headwear/kufi.svg",
+      "tags": [
+        "kufi"
+      ],
+      "bytes": 261
+    },
+    {
+      "id": "p_hair_short_b",
+      "slot": "hair",
+      "file": "parts/hair/short_b.svg",
+      "tags": [
+        "short"
+      ],
+      "bytes": 217
+    },
+    {
+      "id": "p_hair_side_part",
+      "slot": "hair",
+      "file": "parts/hair/side_part.svg",
+      "tags": [
+        "side-part"
+      ],
+      "bytes": 237
+    },
+    {
+      "id": "p_torso_shirt_collar",
+      "slot": "torso",
+      "file": "parts/torso/shirt_collar.svg",
+      "tags": [
+        "shirt"
+      ],
+      "bytes": 354
+    },
+    {
+      "id": "p_torso_thobe",
+      "slot": "torso",
+      "file": "parts/torso/thobe.svg",
+      "tags": [
+        "thobe"
+      ],
+      "bytes": 425
+    },
+    {
+      "id": "p_torso_vest",
+      "slot": "torso",
+      "file": "parts/torso/vest.svg",
+      "tags": [
+        "vest"
+      ],
+      "bytes": 433
+    },
+    {
+      "id": "p_prop_desk_a_book",
+      "slot": "prop_desk_a",
+      "file": "parts/prop_desk_a/book.svg",
+      "tags": [
+        "book"
+      ],
+      "bytes": 295
+    },
+    {
+      "id": "p_prop_desk_b_tasbih",
+      "slot": "prop_desk_b",
+      "file": "parts/prop_desk_b/tasbih.svg",
+      "tags": [
+        "tasbih"
+      ],
+      "bytes": 841
     }
   ],
   "palettes": [

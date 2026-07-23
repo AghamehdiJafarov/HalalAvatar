@@ -1,0 +1,6 @@
+<symbol id="p_torso_vest" viewBox="0 0 1600 900">
+  <path d="M 662 640 L 662 522 Q 662 434 748 420 L 852 420 Q 938 434 938 522 L 938 640 Z" fill="var(--c-shirt2)"/>
+  <path d="M 692 640 L 692 502 Q 702 442 752 424 L 784 424 L 800 472 L 816 424 L 848 424 Q 898 442 908 502 L 908 640 Z" fill="var(--c-shirt)"/>
+  <circle cx="800" cy="536" r="4" fill="var(--c-dark)"/>
+  <circle cx="800" cy="572" r="4" fill="var(--c-dark)"/>
+</symbol>

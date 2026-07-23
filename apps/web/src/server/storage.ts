@@ -8,6 +8,7 @@ export function getStorage(): Storage {
   const endpoint = process.env.S3_ENDPOINT ?? "memory";
   const publicBase = process.env.S3_PUBLIC_BASE ?? process.env.APP_URL ?? "";
 
+  // Real object storage (R2/S3) when explicitly configured.
   if (endpoint !== "memory" && endpoint !== "file") {
     return s3Storage({
       endpoint,
@@ -18,7 +19,9 @@ export function getStorage(): Storage {
     });
   }
 
+  // Local dev with real files on disk.
   if (endpoint === "file") return fileStorage(ROOT, publicBase);
 
+  // Default (serverless / Vercel): in-memory, never writes to read-only FS.
   return memoryStorage(publicBase);
 }

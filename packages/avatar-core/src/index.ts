@@ -5,3 +5,4 @@ export * from "./compose";
 export * from "./scheduler";
 export { ASSETS_VERSION } from "./assets-version";
 export { extractSymbols } from "./sprites";
+export * from "./framings";

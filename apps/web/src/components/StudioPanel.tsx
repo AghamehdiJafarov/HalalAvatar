@@ -12,8 +12,9 @@ const SLOTS: { slot: string; label: string; optional: boolean }[] = [
   { slot: "glasses", label: "Очки", optional: true },
   { slot: "torso", label: "Одежда", optional: false },
   { slot: "prop_hand", label: "Предмет в руке", optional: true },
-  { slot: "prop_desk_a", label: "Стол: ноутбук", optional: true },
-  { slot: "bg_wall", label: "Фон", optional: false },
+  { slot: "prop_desk_a", label: "На столе слева", optional: true },
+  { slot: "prop_desk_b", label: "На столе справа", optional: true },
+  { slot: "bg_wall", label: "Фон превью", optional: true },
 ];
 
 export function StudioPanel({ config, onChange, onSave, animPreset, onAnimChange }: {

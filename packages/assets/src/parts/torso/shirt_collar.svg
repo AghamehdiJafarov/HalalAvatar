@@ -1,0 +1,5 @@
+<symbol id="p_torso_shirt_collar" viewBox="0 0 1600 900">
+  <path d="M 662 640 L 662 522 Q 662 434 748 420 L 852 420 Q 938 434 938 522 L 938 640 Z" fill="var(--c-shirt)"/>
+  <path d="M 756 420 L 800 466 L 844 420 L 852 420 L 800 484 L 748 420 Z" fill="var(--c-shirt2)"/>
+  <rect x="794" y="466" width="12" height="174" fill="var(--c-shirt2)"/>
+</symbol>

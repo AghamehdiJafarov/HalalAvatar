@@ -4,36 +4,12 @@ import { spawn } from "node:child_process";
 import { Resvg } from "@resvg/resvg-js";
 import {
   composeSceneSVG, resolveConfig, samplePose,
-  FPS, type AvatarConfig, type Instance,
+  FPS, FRAMINGS, CHROMA_GREEN, type AvatarConfig, type FramingId, type Instance,
 } from "@faceless/avatar-core";
 import type { LoadedAssets } from "./assets";
 
-// Slots dropped for cut-out exports (character isolated on transparency).
-const BACKDROP_SLOTS = ["bg_wall", "bg_decor_l", "bg_decor_r", "desk", "prop_desk_a", "prop_desk_b"];
-
-// Standard chroma green for keyers that cannot read an alpha channel.
-export const CHROMA_GREEN = "#00B140";
-
-export type FramingId = "bust" | "overlay" | "portrait" | "square";
-
-export interface Framing {
-  viewBox: string;
-  hideSlots: string[];
-  width: number;
-  height: number;
-}
-
-// Character content spans x 606..994, y 128..664 in scene coords.
-// Cut-out crops end at y=632 so the torso meets the frame edge instead of floating.
-export const FRAMINGS: Record<FramingId, Framing> = {
-  // Character content spans x 606..994, y 128..664 in scene coords.
-  // Every framing is a cut-out: the product is the character, not the room.
-  // Bottoms end at y=632 so the torso meets the frame edge instead of floating.
-  bust:     { viewBox: "596 96 408 536",  hideSlots: BACKDROP_SLOTS, width: 1080, height: 1419 },
-  overlay:  { viewBox: "560 90 480 542",  hideSlots: BACKDROP_SLOTS, width: 1080, height: 1220 },
-  portrait: { viewBox: "575 -168 450 800", hideSlots: BACKDROP_SLOTS, width: 1080, height: 1920 },
-  square:   { viewBox: "530 92 540 540",  hideSlots: BACKDROP_SLOTS, width: 1080, height: 1080 },
-};
+export { FRAMINGS, CHROMA_GREEN };
+export type { FramingId };
 
 export type FormatId = "mp4" | "mp4_green" | "mov_qtrle" | "mov_prores" | "png_seq";
 

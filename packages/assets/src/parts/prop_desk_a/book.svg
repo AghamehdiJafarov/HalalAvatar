@@ -1,0 +1,5 @@
+<symbol id="p_prop_desk_a_book" viewBox="0 0 1600 900">
+  <rect x="368" y="588" width="164" height="16" rx="4" fill="var(--c-white)"/>
+  <rect x="360" y="598" width="180" height="42" rx="6" fill="var(--c-dark)"/>
+  <rect x="360" y="598" width="14" height="42" fill="var(--c-accent)"/>
+</symbol>

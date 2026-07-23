@@ -1,0 +1,4 @@
+<symbol id="p_headwear_kufi" viewBox="0 0 1600 900">
+  <path d="M 716 268 Q 716 186 800 182 Q 884 186 884 268 Q 800 244 716 268 Z" fill="var(--c-headwear)"/>
+  <path d="M 716 268 Q 800 244 884 268 L 884 282 Q 800 258 716 282 Z" fill="var(--c-dark)"/>
+</symbol>

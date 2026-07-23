@@ -4,9 +4,10 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveConfig, composeSceneSVG, type SymbolMap } from "../src/compose.js";
 import type { AvatarConfig, Manifest, Pose } from "../src/types.js";
+import { ASSETS_VERSION } from "../src/assets-version.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ASSETS = join(HERE, "..", "..", "..", "apps", "web", "public", "assets", "v1.0.0");
+const ASSETS = join(HERE, "..", "..", "..", "apps", "web", "public", "assets", `v${ASSETS_VERSION}`);
 const manifest: Manifest = JSON.parse(readFileSync(join(ASSETS, "manifest.json"), "utf8"));
 const palettes: Record<string, Record<string, string>> = JSON.parse(readFileSync(join(ASSETS, "palettes.json"), "utf8"));
 
@@ -42,8 +43,8 @@ describe("resolveConfig", () => {
   });
 
   it("headwear rule nulls hair", () => {
-    const r = resolveConfig(manifest, { ...cfg, parts: { headwear: "p_headwear_hijab_a", hair: "p_hair_short_a" } });
-    expect(r.parts.headwear).toBe("p_headwear_hijab_a");
+    const r = resolveConfig(manifest, { ...cfg, parts: { headwear: "p_headwear_kufi", hair: "p_hair_short_a" } });
+    expect(r.parts.headwear).toBe("p_headwear_kufi");
     expect(r.parts.hair).toBeNull();
   });
 

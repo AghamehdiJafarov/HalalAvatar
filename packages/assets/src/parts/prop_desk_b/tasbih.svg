@@ -1,0 +1,14 @@
+<symbol id="p_prop_desk_b_tasbih" viewBox="0 0 1600 900">
+  <circle cx="1133" cy="579" r="7" fill="var(--c-accent)"/>
+  <circle cx="1139" cy="568" r="7" fill="var(--c-accent)"/>
+  <circle cx="1147" cy="559" r="7" fill="var(--c-accent)"/>
+  <circle cx="1157" cy="552" r="7" fill="var(--c-accent)"/>
+  <circle cx="1168" cy="547" r="7" fill="var(--c-accent)"/>
+  <circle cx="1180" cy="546" r="7" fill="var(--c-accent)"/>
+  <circle cx="1192" cy="547" r="7" fill="var(--c-accent)"/>
+  <circle cx="1203" cy="552" r="7" fill="var(--c-accent)"/>
+  <circle cx="1213" cy="559" r="7" fill="var(--c-accent)"/>
+  <circle cx="1221" cy="568" r="7" fill="var(--c-accent)"/>
+  <circle cx="1227" cy="579" r="7" fill="var(--c-accent)"/>
+  <line x1="1230" y1="606" x2="1230" y2="634" stroke="var(--c-accent)" stroke-width="5" stroke-linecap="round"/>
+</symbol>

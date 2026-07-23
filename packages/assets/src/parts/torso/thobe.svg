@@ -1,0 +1,7 @@
+<symbol id="p_torso_thobe" viewBox="0 0 1600 900">
+  <path d="M 640 640 L 650 470 Q 662 424 748 420 L 852 420 Q 938 424 950 470 L 960 640 Z" fill="var(--c-shirt)"/>
+  <rect x="786" y="424" width="28" height="96" rx="6" fill="var(--c-shirt2)"/>
+  <circle cx="800" cy="450" r="4" fill="var(--c-dark)"/>
+  <circle cx="800" cy="478" r="4" fill="var(--c-dark)"/>
+  <circle cx="800" cy="506" r="4" fill="var(--c-dark)"/>
+</symbol>

@@ -84,6 +84,60 @@
     "palette": "midnight",
     "parts": {}
    }
+  },
+  {
+   "id": "imam",
+   "title": "Имам",
+   "tags": [
+    "тоб",
+    "тюбетейка"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "ivory",
+    "parts": {
+     "torso": "p_torso_thobe",
+     "headwear": "p_headwear_kufi",
+     "glasses": null,
+     "prop_hand": null,
+     "prop_desk_a": "p_prop_desk_a_book",
+     "prop_desk_b": "p_prop_desk_b_tasbih"
+    }
+   }
+  },
+  {
+   "id": "yusuf",
+   "title": "Юсуф",
+   "tags": [
+    "рубашка",
+    "пробор"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "sand",
+    "parts": {
+     "torso": "p_torso_shirt_collar",
+     "hair": "p_hair_side_part",
+     "prop_hand": null
+    }
+   }
+  },
+  {
+   "id": "samir",
+   "title": "Самир",
+   "tags": [
+    "жилет",
+    "ёжик"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "midnight",
+    "parts": {
+     "torso": "p_torso_vest",
+     "hair": "p_hair_short_b",
+     "glasses": null
+    }
+   }
   }
  ]
 }

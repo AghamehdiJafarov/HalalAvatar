@@ -40,13 +40,15 @@ export function s3Storage(opts: {
   };
 }
 
+// No-op storage for serverless (read-only FS). Writes nothing; audio is a mock
+// anyway. Prevents the chat route from hanging on disk writes on Vercel.
 export function memoryStorage(publicBase: string): Storage {
   const mem = new Map<string, Uint8Array>();
   return {
     async head(key) { return mem.has(key); },
     async put(key, body) { mem.set(key, body); },
     async getText(key) { const v = mem.get(key); return v ? new TextDecoder().decode(v) : null; },
-    async getBytes() { },
+    async getBytes() { /* no-op: bytes not needed for mock audio */ },
     publicUrl(key) { return `${publicBase}/dev-storage/${key}`; },
   };
 }

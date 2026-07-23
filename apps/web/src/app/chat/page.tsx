@@ -4,7 +4,7 @@ import { AvatarStage } from "@/components/AvatarStage";
 import { SubtitleBar } from "@/components/SubtitleBar";
 import { ChatList } from "@/components/ChatList";
 import { ChatInput } from "@/components/ChatInput";
-import { VideoButton } from "@/components/VideoButton";
+import Link from "next/link";
 import { useAppStore, type ChatMessage } from "@/store/useAppStore";
 import type { Instance } from "@faceless/avatar-core";
 
@@ -50,7 +50,12 @@ export default function ChatPage() {
       </div>
       {needPlay && <button onClick={manualPlay} className="self-center rounded bg-neutral-900 px-3 py-1 text-white">Воспроизвести</button>}
       <div className="flex-1 overflow-y-auto"><ChatList messages={messages} /></div>
-      {current && <div className="self-start"><VideoButton messageId={current.id} /></div>}
+      {current && (
+        <div className="self-start text-sm text-neutral-500">
+          Скачать аватара с анимацией можно в{" "}
+          <Link href="/studio" className="text-blue-600 underline">студии</Link>.
+        </div>
+      )}
       <ChatInput onSend={send} disabled={busy} />
     </main>
   );

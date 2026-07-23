@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { AvatarStage } from "@/components/AvatarStage";
 import { StudioPanel } from "@/components/StudioPanel";
+import { DownloadPanel } from "@/components/DownloadPanel";
 import { useAppStore } from "@/store/useAppStore";
 import { loadClientAssets, type ClientAssets } from "@/lib/avatar-client";
 import type { AvatarConfig } from "@faceless/avatar-core";
@@ -37,13 +38,23 @@ export default function StudioPage() {
           loopMs={assets?.animations.loopDurationMs ?? 0}
         />
       </div>
-      <StudioPanel
-        config={config}
-        onChange={setConfig}
-        onSave={save}
-        animPreset={animPreset}
-        onAnimChange={setAnimPreset}
-      />
+      <div className="flex flex-col gap-6">
+        <StudioPanel
+          config={config}
+          onChange={setConfig}
+          onSave={save}
+          animPreset={animPreset}
+          onAnimChange={setAnimPreset}
+        />
+        {preset && assets && (
+          <DownloadPanel
+            config={config}
+            instances={preset.instances}
+            durationMs={assets.animations.loopDurationMs}
+            presetId={preset.id}
+          />
+        )}
+      </div>
     </main>
   );
 }

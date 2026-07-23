@@ -1,61 +1,73 @@
-# Faceless Avatar Platform
+# HalalAvatar
 
-Web platform for chatting with a **faceless 2D flat/vector AI avatar**. No image generation:
-the avatar is composed from a validated library of layered SVG parts and animated by a
-deterministic runtime. Pipeline: user input → LLM (reply + gesture directives) → TTS →
-2D avatar animation synced to audio → optional server-rendered MP4.
+Каталог безликих 2D flat-аватаров с анимациями для видеомейкеров.
+Выбери персонажа, настрой детали, скачай ролик с зелёным фоном или
+прозрачностью — и вставь в монтаж (CapCut, DaVinci, Premiere).
 
-## Architecture
+Без генерации изображений: каждый кадр собирается из проверенной
+библиотеки SVG-слоёв детерминированной функцией. Один и тот же вход
+всегда даёт один и тот же кадр.
 
-- `packages/avatar-core` — isomorphic engine (constants, types, deterministic `samplePose`,
-  compositor, gesture scheduler). Runs identically in browser and video worker.
-- `packages/assets` — hand-written SVG parts, clips, palettes, manifest, and the validator
-  (`build.ts`) that enforces the style/facelessness contract and builds `sprites.svg`.
-- `apps/web` — Next.js 15 (App Router): chat, studio, library, API routes, TTS/LLM providers.
-- `apps/worker` — BullMQ video worker: per-frame resvg raster + ffmpeg mux.
+## Что внутри
 
-## Facelessness guarantees
+- **Каталог** (`/`) — сетка персонажей.
+- **Страница персонажа** (`/c/[id]`) — живая анимация, выбор пресета, скачивание.
+- **Студия** (`/studio`) — конструктор: причёска, головной убор, одежда,
+  реквизит, палитра, анимация; скачивание в тех же форматах.
+- **Чат** (`/chat`) — прототип диалога с аватаром, вторичен.
 
-No generative image calls exist anywhere. There are no face-feature slots. The asset
-validator rejects any primitive inside the face zone (except glasses / single skin fill).
-The LLM only emits closed enum gestures via zod. A CI grep invariant forbids image-gen strings.
+## Форматы экспорта
 
-## Local development (≤15 commands)
+Файл собирается **в браузере пользователя** — серверных мощностей не требуется.
 
-```
-cp .env.example .env                 # 1. defaults use file storage + mock LLM/TTS
-pnpm install                         # 2.
-pnpm build:assets                    # 3. validate parts, build sprites.svg + versioned assets
-docker compose up -d postgres redis  # 4.
-pnpm --filter @faceless/web exec prisma migrate dev   # 5. create tables
-node apps/web/prisma/seed.mjs        # 6. demo user
-pnpm --filter @faceless/web dev      # 7. web on :3000
-pnpm --filter @faceless/worker dev   # 8. video worker (separate shell)
-```
+| Формат | Прозрачность | Для чего |
+|---|---|---|
+| MP4, зелёный фон | хромакей | CapCut и мобильные редакторы |
+| PNG-кадры (ZIP) | настоящая альфа | любые монтажки, без потерь |
+| WebM, зелёный фон | хромакей | запасной путь |
 
-Without `LLM_API_KEY` / `AZURE_SPEECH_KEY`, mock providers are used automatically (M4 slice).
-Add real credentials to `.env` for live LLM + TTS.
+Кадрирования: крупный план, для наложения, вертикальное 9:16, квадрат 1:1.
+Фон, стол и настольные предметы в экспорт не попадают — только персонаж.
 
-## Production deploy
+## Архитектура
 
-```
-# on the VPS, with .env filled (real S3/R2, Azure, LLM, APP_DOMAIN):
-docker compose build
-docker compose up -d
-```
+- `packages/avatar-core` — изоморфное ядро: константы, детерминированный
+  `samplePose`, компонатор SVG, планировщик жестов. Работает одинаково
+  в браузере и в Node.
+- `packages/assets` — SVG-части, клипы, палитры, каталог, валидатор.
+- `apps/web` — Next.js 15 (App Router).
+- `apps/worker` — пакетный рендер каталога через resvg + ffmpeg
+  (не обязателен для работы сайта).
 
-Caddy terminates TLS and serves `/assets/*` with immutable cache. `prisma migrate deploy`
-runs on web container start.
+## Гарантии безликости
 
-## Tests
+Генеративных вызовов нет нигде. Слотов черт лица не существует.
+Валидатор отклоняет любой примитив внутри лицевой зоны, кроме очков
+и одиночной заливки цветом кожи. Проверяется на каждой сборке ассетов.
+
+## Разработка
 
 ```
-pnpm -r test          # runtime determinism, scheduler snapshot, compose, validator,
-                      # provider parse/cache, orchestration, video golden frame
+pnpm install
+pnpm build:assets          # валидация + сборка спрайтшита
+pnpm -r test               # 64 теста
+pnpm --filter @faceless/web dev
 ```
 
-## Notes
+После правки любых SVG-частей или клипов обязателен `pnpm build:assets`;
+при добавлении новых частей поднимай `version` в `packages/assets/src/manifest.json`.
 
-- Asset changes require a version bump in `packages/assets/src/manifest.json`
-  (`/assets/vX.Y.Z/` is immutable). Run `pnpm build:assets` after any part edit.
-- Video is capped at 90s. TTS reply is clipped to 600 chars before both TTS and scheduler.
+## Пакетный рендер каталога (необязательно)
+
+Ускоряет загрузку страниц: вместо живой анимации отдаются готовые видео.
+
+```
+sudo apt-get install -y ffmpeg zip
+cd apps/worker
+npx tsx render-catalog.mjs --posters
+```
+
+## Переменные окружения
+
+Для каталога и студии не нужны. Чат требует `DATABASE_URL`, `AUTH_SECRET`,
+`NEXTAUTH_SECRET`, `NEXTAUTH_URL`, `AUTH_DEMO=1`.
