@@ -24,9 +24,9 @@
         "prop_hand"
       ],
       "defaults": {
-        "bg_wall": null,
-        "bg_decor_l": null,
-        "bg_decor_r": null,
+        "bg_wall": "p_bg_wall_flat",
+        "bg_decor_l": "p_bg_decor_l_shelf",
+        "bg_decor_r": "p_bg_decor_r_clock",
         "desk": "p_desk_basic",
         "prop_desk_a": "p_prop_desk_a_laptop",
         "prop_desk_b": "p_prop_desk_b_cup",
