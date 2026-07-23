@@ -103,10 +103,49 @@ export function webCodecsSupported(): boolean {
   return typeof window !== "undefined" && "VideoEncoder" in window;
 }
 
+// H.264 levels by MaxFS (macroblocks). A 1080x1924 frame needs 8228 MB, which
+// overflows Level 4.0 (8192) — hence levels up to 5.2 and a size-driven search
+// instead of a fixed guess.
+const AVC_LEVELS: { hex: string; maxMB: number }[] = [
+  { hex: "1e", maxMB: 1620 },  // 3.0
+  { hex: "1f", maxMB: 3600 },  // 3.1
+  { hex: "20", maxMB: 5120 },  // 3.2
+  { hex: "28", maxMB: 8192 },  // 4.0
+  { hex: "29", maxMB: 8192 },  // 4.1
+  { hex: "2a", maxMB: 8704 },  // 4.2
+  { hex: "32", maxMB: 22080 }, // 5.0
+  { hex: "33", maxMB: 36864 }, // 5.1
+  { hex: "34", maxMB: 36864 }, // 5.2
+];
+
 async function pickAvcCodec(width: number, height: number): Promise<string | null> {
-  for (const codec of ["avc1.42001f", "avc1.4d001f", "avc1.640028"]) {
+  const mb = Math.ceil(width / 16) * Math.ceil(height / 16);
+  // Try levels that actually fit this frame, smallest first; High then Baseline.
+  const fitting = AVC_LEVELS.filter((l) => mb <= l.maxMB);
+  const candidates: string[] = [];
+  for (const l of fitting) candidates.push(`avc1.6400${l.hex}`); // High profile
+  for (const l of fitting) candidates.push(`avc1.4200${l.hex}`); // Baseline
+  for (const l of fitting) candidates.push(`avc1.4d00${l.hex}`); // Main
+
+  for (const codec of candidates) {
     try {
-      const { supported } = await VideoEncoder.isConfigSupported({ codec, width, height, framerate: FPS });
+      const { supported } = await VideoEncoder.isConfigSupported({
+        codec, width, height, framerate: FPS, bitrate: 5_000_000,
+      });
+      if (supported) return codec;
+    } catch { /* try next */ }
+  }
+  return null;
+}
+
+// Some Chrome builds ship without an H.264 encoder at all (licensing). VP9 is
+// royalty-free, always present alongside WebCodecs, and valid inside MP4.
+async function pickVp9(width: number, height: number): Promise<string | null> {
+  for (const codec of ["vp09.00.51.08", "vp09.00.41.08", "vp09.00.10.08"]) {
+    try {
+      const { supported } = await VideoEncoder.isConfigSupported({
+        codec, width, height, framerate: FPS, bitrate: 5_000_000,
+      });
       if (supported) return codec;
     } catch { /* try next */ }
   }
@@ -116,8 +155,16 @@ async function pickAvcCodec(width: number, height: number): Promise<string | nul
 export async function exportGreenMp4(job: ExportJob): Promise<Blob> {
   const a = await loadFlatAssets();
   const fr = FRAMINGS[job.framing];
-  const codec = await pickAvcCodec(fr.width, fr.height);
-  if (!codec) throw new Error("H.264 encoding is not available in this browser");
+  let codec = await pickAvcCodec(fr.width, fr.height);
+  let muxCodec: "avc" | "vp9" = "avc";
+  if (!codec) {
+    codec = await pickVp9(fr.width, fr.height);
+    muxCodec = "vp9";
+  }
+  if (!codec) throw new Error(
+    `Браузер не смог закодировать MP4 в размере ${fr.width}x${fr.height}. ` +
+    "Выбери PNG-кадры с прозрачностью или WebM.",
+  );
 
   const canvas = document.createElement("canvas");
   canvas.width = fr.width; canvas.height = fr.height;
@@ -127,7 +174,7 @@ export async function exportGreenMp4(job: ExportJob): Promise<Blob> {
   const muxer = new Muxer({
     target,
     fastStart: "in-memory",
-    video: { codec: "avc", width: fr.width, height: fr.height, frameRate: FPS },
+    video: { codec: muxCodec, width: fr.width, height: fr.height, frameRate: FPS },
   });
   let failure: unknown = null;
   const encoder = new VideoEncoder({
