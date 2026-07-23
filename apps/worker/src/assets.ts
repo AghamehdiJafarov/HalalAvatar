@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { ASSETS_VERSION, type Clip, type Manifest } from "@faceless/avatar-core";
+import { ASSETS_VERSION, extractSymbols, type Clip, type Manifest } from "@faceless/avatar-core";
 
 // Resolve the versioned asset dir shipped into apps/web/public.
 export function assetsDir(root: string): string {
@@ -12,15 +12,6 @@ export interface LoadedAssets {
   palettes: Record<string, Record<string, string>>;
   clips: Record<string, Clip>;
   symbols: Record<string, string>; // partId -> inner markup for flat mode
-}
-
-// The sprites.svg <defs> contains every <symbol>; extract inner markup per id.
-function extractSymbols(spritesSvg: string): Record<string, string> {
-  const map: Record<string, string> = {};
-  const re = /<symbol id="([^"]+)"[^>]*>([\s\S]*?)<\/symbol>/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(spritesSvg)) !== null) map[m[1]!] = m[2]!.trim();
-  return map;
 }
 
 export function loadAssets(root: string): LoadedAssets {

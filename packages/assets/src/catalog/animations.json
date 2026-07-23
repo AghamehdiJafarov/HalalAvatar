@@ -1,0 +1,263 @@
+{
+ "loopDurationMs": 7200,
+ "presets": [
+  {
+   "id": "idle_calm",
+   "title": "Спокойное ожидание",
+   "posterMs": 1800,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    }
+   ]
+  },
+  {
+   "id": "greeting",
+   "title": "Приветствие",
+   "posterMs": 1150,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "wave_R",
+     "startMs": 600
+    }
+   ]
+  },
+  {
+   "id": "agree",
+   "title": "Согласие",
+   "posterMs": 950,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "nod_double",
+     "startMs": 700
+    },
+    {
+     "clip": "beat_R",
+     "startMs": 3400
+    },
+    {
+     "clip": "nod",
+     "startMs": 5200
+    }
+   ]
+  },
+  {
+   "id": "disagree",
+   "title": "Несогласие",
+   "posterMs": 1100,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "shake_no",
+     "startMs": 800
+    },
+    {
+     "clip": "tilt_L",
+     "startMs": 3200
+    }
+   ]
+  },
+  {
+   "id": "thinking",
+   "title": "Размышление",
+   "posterMs": 1600,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "think_hold",
+     "startMs": 700
+    },
+    {
+     "clip": "nod",
+     "startMs": 4600
+    }
+   ]
+  },
+  {
+   "id": "explaining",
+   "title": "Объяснение",
+   "posterMs": 1250,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "open_palm_L",
+     "startMs": 600
+    },
+    {
+     "clip": "point_R",
+     "startMs": 2600
+    },
+    {
+     "clip": "beat_R",
+     "startMs": 4900
+    }
+   ]
+  },
+  {
+   "id": "excited",
+   "title": "Радость",
+   "posterMs": 1050,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "celebrate",
+     "startMs": 700
+    },
+    {
+     "clip": "nod_double",
+     "startMs": 3400
+    }
+   ]
+  },
+  {
+   "id": "typing_work",
+   "title": "Печатает",
+   "posterMs": 1200,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "typing",
+     "startMs": 500
+    },
+    {
+     "clip": "typing",
+     "startMs": 3300
+    },
+    {
+     "clip": "settle",
+     "startMs": 6300
+    }
+   ]
+  },
+  {
+   "id": "presenting",
+   "title": "Презентация",
+   "posterMs": 1400,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "lean_in",
+     "startMs": 500
+    },
+    {
+     "clip": "open_palm_L",
+     "startMs": 2700
+    },
+    {
+     "clip": "settle",
+     "startMs": 6200
+    }
+   ]
+  },
+  {
+   "id": "farewell",
+   "title": "Прощание",
+   "posterMs": 3100,
+   "instances": [
+    {
+     "clip": "idle_breathe",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "idle_sway2",
+     "startMs": 0,
+     "endMs": 7200
+    },
+    {
+     "clip": "nod",
+     "startMs": 600
+    },
+    {
+     "clip": "wave_R",
+     "startMs": 2400
+    },
+    {
+     "clip": "settle",
+     "startMs": 6300
+    }
+   ]
+  }
+ ]
+}

@@ -72,7 +72,7 @@ describe("composeSceneSVG", () => {
     });
     expect(svg).not.toContain("var(--");
     expect(svg).not.toContain("<use");
-    expect(svg).toContain("#2E7FC1"); // wall hex substituted
+    expect(svg).toContain("#F2C9A0"); // skin hex substituted (wall is off by default)
   });
 
   it("emits all rig group ids with transforms", () => {

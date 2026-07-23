@@ -24,9 +24,9 @@
         "prop_hand"
       ],
       "defaults": {
-        "bg_wall": "p_bg_wall_flat",
-        "bg_decor_l": "p_bg_decor_l_shelf",
-        "bg_decor_r": "p_bg_decor_r_clock",
+        "bg_wall": null,
+        "bg_decor_l": null,
+        "bg_decor_r": null,
         "desk": "p_desk_basic",
         "prop_desk_a": "p_prop_desk_a_laptop",
         "prop_desk_b": "p_prop_desk_b_cup",
@@ -207,18 +207,28 @@
   "palettes": [
     "ref_blue",
     "sand",
-    "night"
+    "night",
+    "emerald",
+    "ivory",
+    "midnight"
   ],
   "clips": [
+    "beat_R",
+    "celebrate",
     "idle_breathe",
     "idle_sway",
+    "idle_sway2",
+    "lean_in",
     "nod",
-    "tilt_L",
-    "tilt_R",
-    "beat_R",
+    "nod_double",
     "open_palm_L",
     "point_R",
-    "lean_in",
-    "settle"
+    "settle",
+    "shake_no",
+    "think_hold",
+    "tilt_L",
+    "tilt_R",
+    "typing",
+    "wave_R"
   ]
 }

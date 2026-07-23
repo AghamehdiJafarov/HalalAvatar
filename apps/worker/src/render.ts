@@ -14,7 +14,7 @@ const BACKDROP_SLOTS = ["bg_wall", "bg_decor_l", "bg_decor_r", "desk", "prop_des
 // Standard chroma green for keyers that cannot read an alpha channel.
 export const CHROMA_GREEN = "#00B140";
 
-export type FramingId = "scene" | "overlay" | "portrait" | "square";
+export type FramingId = "bust" | "overlay" | "portrait" | "square";
 
 export interface Framing {
   viewBox: string;
@@ -26,7 +26,10 @@ export interface Framing {
 // Character content spans x 606..994, y 128..664 in scene coords.
 // Cut-out crops end at y=632 so the torso meets the frame edge instead of floating.
 export const FRAMINGS: Record<FramingId, Framing> = {
-  scene:    { viewBox: "0 0 1600 900",    hideSlots: [],             width: 1920, height: 1080 },
+  // Character content spans x 606..994, y 128..664 in scene coords.
+  // Every framing is a cut-out: the product is the character, not the room.
+  // Bottoms end at y=632 so the torso meets the frame edge instead of floating.
+  bust:     { viewBox: "596 96 408 536",  hideSlots: BACKDROP_SLOTS, width: 1080, height: 1419 },
   overlay:  { viewBox: "560 90 480 542",  hideSlots: BACKDROP_SLOTS, width: 1080, height: 1220 },
   portrait: { viewBox: "575 -168 450 800", hideSlots: BACKDROP_SLOTS, width: 1080, height: 1920 },
   square:   { viewBox: "530 92 540 540",  hideSlots: BACKDROP_SLOTS, width: 1080, height: 1080 },
@@ -71,6 +74,7 @@ export interface RenderInput {
   outPath: string;
   framing?: FramingId;
   format?: FormatId;
+  tailMs?: number;   // extra silent tail; 0 for seamless catalog loops
 }
 
 // Compose one flat frame SVG at time t (ms). Deterministic; shares samplePose with the client.
@@ -79,7 +83,7 @@ export function frameSVG(
   tMs: number,
 ): string {
   const { assets, config, instances } = input;
-  const framing = FRAMINGS[input.framing ?? "scene"];
+  const framing = FRAMINGS[input.framing ?? "overlay"];
   const resolved = resolveConfig(assets.manifest, config);
   const paletteMap = assets.palettes[resolved.palette]!;
   const pose = samplePose(instances, assets.clips, tMs);
@@ -115,7 +119,7 @@ async function run(cmd: string, args: string[]): Promise<void> {
 // Full render: frames -> encode. Writes outPath.
 export async function renderVideo(input: RenderInput): Promise<void> {
   const { assets, config, durationMs, workDir, audioPath, outPath } = input;
-  const framing = FRAMINGS[input.framing ?? "scene"];
+  const framing = FRAMINGS[input.framing ?? "overlay"];
   const format = FORMATS[input.format ?? "mp4"];
 
   const resolved = resolveConfig(assets.manifest, config);
@@ -125,7 +129,7 @@ export async function renderVideo(input: RenderInput): Promise<void> {
   const framesDir = join(workDir, "frames");
   mkdirSync(framesDir, { recursive: true });
 
-  const frames = Math.ceil((durationMs + 1500) * FPS / 1000);
+  const frames = Math.ceil((durationMs + (input.tailMs ?? 1500)) * FPS / 1000);
   for (let f = 0; f < frames; f++) {
     const svg = frameSVG(input, (f * 1000) / FPS);
     const png = renderFramePNG(svg, framing.width, background);

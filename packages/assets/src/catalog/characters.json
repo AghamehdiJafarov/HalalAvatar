@@ -1,0 +1,89 @@
+{
+ "characters": [
+  {
+   "id": "murad",
+   "title": "Мурад",
+   "tags": [
+    "офис",
+    "очки"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "ref_blue",
+    "parts": {}
+   }
+  },
+  {
+   "id": "kamran",
+   "title": "Кямран",
+   "tags": [
+    "тёплый",
+    "без очков"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "sand",
+    "parts": {
+     "glasses": null
+    }
+   }
+  },
+  {
+   "id": "tural",
+   "title": "Турал",
+   "tags": [
+    "светлый",
+    "телефон"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "ivory",
+    "parts": {}
+   }
+  },
+  {
+   "id": "elvin",
+   "title": "Эльвин",
+   "tags": [
+    "ночь",
+    "очки"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "night",
+    "parts": {
+     "prop_hand": null
+    }
+   }
+  },
+  {
+   "id": "rashad",
+   "title": "Рашад",
+   "tags": [
+    "изумруд",
+    "без телефона"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "emerald",
+    "parts": {
+     "glasses": null,
+     "prop_hand": null
+    }
+   }
+  },
+  {
+   "id": "orxan",
+   "title": "Орхан",
+   "tags": [
+    "тёмный",
+    "очки"
+   ],
+   "config": {
+    "archetype": "seated_desk",
+    "palette": "midnight",
+    "parts": {}
+   }
+  }
+ ]
+}
