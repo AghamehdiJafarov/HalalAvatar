@@ -52,18 +52,51 @@ function flatFrameSVG(
   });
 }
 
+// The compositor emits <svg viewBox="..."> with no width/height: resvg sizes it
+// via fitTo, but a browser loading such an SVG as an <img> has no intrinsic
+// dimensions and paints nothing. Inject explicit pixel dimensions first.
+function withExplicitSize(svg: string, w: number, h: number): string {
+  return svg.replace(
+    /^<svg\s/,
+    `<svg width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet" `,
+  );
+}
+
 // Same-origin blob SVG does not taint the canvas, so toBlob/VideoFrame stay legal.
 async function svgToBitmap(svg: string, w: number, h: number): Promise<ImageBitmap> {
-  const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+  const sized = withExplicitSize(svg, w, h);
+  const blob = new Blob([sized], { type: "image/svg+xml;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   try {
-    const img = new Image(w, h);
+    const img = new Image();
+    img.width = w;
+    img.height = h;
     img.src = url;
     await img.decode();
     return await createImageBitmap(img, { resizeWidth: w, resizeHeight: h, resizeQuality: "high" });
   } finally {
     URL.revokeObjectURL(url);
   }
+}
+
+// Guard against silently exporting an empty clip: if the very first frame has
+// no visible pixels, the SVG failed to rasterize and every frame will be blank.
+function assertFrameHasContent(ctx: CanvasRenderingContext2D, w: number, h: number): void {
+  const step = Math.max(1, Math.floor(Math.min(w, h) / 64));
+  const data = ctx.getImageData(0, 0, w, h).data;
+  let first: string | null = null;
+  for (let y = 0; y < h; y += step) {
+    for (let x = 0; x < w; x += step) {
+      const i = (y * w + x) * 4;
+      const px = `${data[i]},${data[i + 1]},${data[i + 2]},${data[i + 3]}`;
+      if (first === null) first = px;
+      else if (px !== first) return; // found variation -> content is there
+    }
+  }
+  throw new Error(
+    "Кадр отрисовался пустым — браузер не смог растеризовать аватара. " +
+    "Попробуй формат «PNG-кадры с прозрачностью».",
+  );
 }
 
 export interface ExportJob {
@@ -90,6 +123,7 @@ export async function exportPngZip(job: ExportJob): Promise<Blob> {
     ctx.clearRect(0, 0, fr.width, fr.height);
     ctx.drawImage(bmp, 0, 0);
     bmp.close();
+    if (f === 0) assertFrameHasContent(ctx, fr.width, fr.height);
     const blob: Blob = await new Promise((res) => canvas.toBlob((b) => res(b!), "image/png"));
     zip.file(`${String(f).padStart(5, "0")}.png`, blob);
     job.onProgress?.(f + 1, total);
@@ -192,6 +226,7 @@ export async function exportGreenMp4(job: ExportJob): Promise<Blob> {
     ctx.fillRect(0, 0, fr.width, fr.height);
     ctx.drawImage(bmp, 0, 0);
     bmp.close();
+    if (f === 0) assertFrameHasContent(ctx, fr.width, fr.height);
     const frame = new VideoFrame(canvas, { timestamp: Math.round((f * 1e6) / FPS), duration: Math.round(1e6 / FPS) });
     encoder.encode(frame, { keyFrame: f % 30 === 0 });
     frame.close();
